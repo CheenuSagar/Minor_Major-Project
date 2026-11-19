@@ -26,3 +26,6 @@ Allows cashier/customer to specify quantity (1 to stock) directly on product car
 
 ## Button Feedback
 CSS active feedback ripple on 'Add to Bill' button for responsive touchscreens.
+
+## Empty States
+Helpful prompt when no products match the search filter query.
