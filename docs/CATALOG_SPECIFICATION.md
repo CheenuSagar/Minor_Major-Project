@@ -11,3 +11,6 @@ Instant client-side substring matching on product name, SKU, and barcode with de
 
 ## SanDisk Cruzer Blade Asset
 Embedded high-res visual for SanDisk Ultra 64GB USB 3.0 Pen Drive.
+
+## Base64 Inlining
+Embedded local image as Base64 data URI to eliminate extra network requests and auth bypass.
