@@ -11,3 +11,6 @@ Animated red laser scanning beam provides visual targeting guide for cashier.
 
 ## Auto-Add to Bill
 Scanned SKU immediately increments quantity in cart without manual click.
+
+## Scan Debouncer
+1200ms refractory cooldown prevents rapid multiple readings of the same item.
