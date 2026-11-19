@@ -10,3 +10,6 @@ Standard 18% GST split into CGST (9%) and SGST (9%) line breakdowns.
 
 ## Sticky Summary
 Fixed subtotal, tax amount, discount deduction, and net payable grand total.
+
+## Clear Bill
+Quick 'Clear Register' button resets current active cart for the next customer.
