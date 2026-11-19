@@ -20,3 +20,6 @@ Supports USB and Bluetooth handheld barcode scanners emulating keyboard wedge in
 
 ## Manual Barcode Entry
 Fallback text box allows typing numeric barcode or SKU directly.
+
+## Mute Toggle
+Sound toggle allows silent operation in noise-sensitive retail environments.
