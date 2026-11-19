@@ -19,3 +19,6 @@ Client-side visibility filters dynamically toggle buttons and cards according to
 
 ## Active Role Indicator
 Avatar badge shows user initials (e.g., 'MG' for Manager, 'CU' for Customer).
+
+## Session Persistence
+Saves selected workspace role in `sessionStorage` for persistence across refreshes.
