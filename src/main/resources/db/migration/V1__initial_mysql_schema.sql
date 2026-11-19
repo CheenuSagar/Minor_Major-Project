@@ -70,3 +70,7 @@ CREATE TABLE IF NOT EXISTS sale_items (
     FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Indexes for O(1) POS Scans
+CREATE INDEX idx_products_sku ON products(sku);
+CREATE INDEX idx_products_barcode ON products(barcode);
