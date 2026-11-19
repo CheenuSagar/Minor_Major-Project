@@ -16,3 +16,6 @@ Financial KPIs, gross margins, AI reorder recommendations, and peak traffic hour
 
 ## Permission Gating
 Client-side visibility filters dynamically toggle buttons and cards according to active role.
+
+## Active Role Indicator
+Avatar badge shows user initials (e.g., 'MG' for Manager, 'CU' for Customer).
