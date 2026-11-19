@@ -27,3 +27,6 @@ Dual-tone chime signals successful payment to cashier and customer.
 
 ## Reference Hash
 Each transaction generates a unique alphanumeric reference ID for bank audit.
+
+## Retry Support
+Allows cashier to re-prompt or switch payment mode without voiding invoice.
