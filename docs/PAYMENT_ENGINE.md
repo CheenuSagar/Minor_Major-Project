@@ -18,3 +18,6 @@ Compatible with Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and all UPI 2.0 ap
 
 ## Cash Tender Calculator
 Cashier inputs amount received; system instantly computes exact change to return.
+
+## Payment Verification
+Simulated real-time payment confirmation verifying funds receipt.
