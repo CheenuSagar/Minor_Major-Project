@@ -19,3 +19,6 @@ Tagline: *Smarter Billing, Faster Retail*
 
 ## Header Bar
 Includes store logo, live clock display, and connection status indicator.
+
+## Header Styling
+Sticky top with backdrop blur filter (`backdrop-filter: blur(12px)`).
