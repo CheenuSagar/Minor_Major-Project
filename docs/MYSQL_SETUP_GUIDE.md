@@ -17,3 +17,8 @@ Set to `update` for automated schema creation and table evolution.
 
 ## Collation
 Character set: `utf8mb4`, Collation: `utf8mb4_unicode_ci` for international product names.
+
+## Environment Variables
+- `DB_URL`: JDBC URL override
+- `DB_USERNAME`: Username (default root)
+- `DB_PASSWORD`: Password (default root)
