@@ -19,3 +19,6 @@ Badge in the top right shows total number of items currently in the active bill.
 
 ## Validation
 Checkout button disabled with tooltip when cart is empty.
+
+## Keyboard Navigation
+Keyboard navigation keys allow hands-free register operation.
