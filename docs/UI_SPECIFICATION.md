@@ -16,3 +16,6 @@ Tagline: *Smarter Billing, Faster Retail*
 ## Typography
 - Font Family: `Inter`, system-ui, -apple-system, sans-serif
 - Weights: 400 (Regular), 500 (Medium), 600 (Semi-bold), 700 (Bold)
+
+## Header Bar
+Includes store logo, live clock display, and connection status indicator.
