@@ -26,3 +26,6 @@ Sound toggle allows silent operation in noise-sensitive retail environments.
 
 ## Camera Fallbacks
 Clear instructions if camera permission is denied or no webcam is attached.
+
+## Scan Audit Log
+Recent scan history shows timestamp, SKU, product name, and match status.
