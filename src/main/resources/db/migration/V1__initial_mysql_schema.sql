@@ -78,3 +78,14 @@ CREATE INDEX idx_sales_invoice ON sales(invoice_number);
 CREATE INDEX idx_sales_created ON sales(created_at);
 CREATE INDEX idx_sale_items_sale ON sale_items(sale_id);
 CREATE INDEX idx_sale_items_product ON sale_items(product_id);
+
+CREATE TABLE IF NOT EXISTS stock_movements (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_id BIGINT NOT NULL,
+    movement_type VARCHAR(30) NOT NULL,
+    quantity INT NOT NULL,
+    balance_after INT NOT NULL,
+    reason VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
