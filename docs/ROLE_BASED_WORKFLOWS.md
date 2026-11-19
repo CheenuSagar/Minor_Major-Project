@@ -7,3 +7,6 @@ Focus on product catalog browsing, cart building, and QR checkout.
 
 ### 2. Cashier POS Register View
 Accelerated rapid checkout with barcode scanner, tender calculator, and printer trigger.
+
+### 3. Store Manager Control View
+Product catalog management, price updates, stock replenishment, and category filters.
