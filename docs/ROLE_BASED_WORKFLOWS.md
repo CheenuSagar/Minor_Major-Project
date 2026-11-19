@@ -13,3 +13,6 @@ Product catalog management, price updates, stock replenishment, and category fil
 
 ### 4. Store Owner Executive View
 Financial KPIs, gross margins, AI reorder recommendations, and peak traffic hours.
+
+## Permission Gating
+Client-side visibility filters dynamically toggle buttons and cards according to active role.
