@@ -16,3 +16,6 @@ Special student educational discount for academic demonstrations.
 
 ## Coupon Pill
 Applied coupon appears with green checkmark and 'Remove' button in order summary.
+
+## Database Persistence
+Passed as `discountAmount` and stored in `sales.discount_amount` column.
