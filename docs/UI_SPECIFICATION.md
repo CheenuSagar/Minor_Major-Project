@@ -12,3 +12,7 @@ Tagline: *Smarter Billing, Faster Retail*
 - Text Primary: `#0f172a`
 - Text Secondary: `#475569`
 - Border: `#e2e8f0`
+
+## Typography
+- Font Family: `Inter`, system-ui, -apple-system, sans-serif
+- Weights: 400 (Regular), 500 (Medium), 600 (Semi-bold), 700 (Bold)
