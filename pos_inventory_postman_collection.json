@@ -1,0 +1,586 @@
+{
+  "info": {
+    "_postman_id": "pos-inventory-system-v1",
+    "name": "POS & Inventory Management System (MCA Project)",
+    "description": "Comprehensive Postman Collection covering Auth, Products, Inventory, Sales, Payments, Cash Drawer, and Reports.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "managerToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "customerToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "saleId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "shiftId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication & Access (FR-1.x)",
+      "item": [
+        {
+          "name": "Login as Store Manager",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('managerToken', jsonData.data.token);",
+                  "    console.log('Manager token set');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"manager\",\n  \"password\": \"Manager@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login as Customer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.token) {",
+                  "    pm.collectionVariables.set('customerToken', jsonData.data.token);",
+                  "    console.log('Customer token set');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"customer\",\n  \"password\": \"Customer@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Register New Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Amit Verma\",\n  \"email\": \"amit.verma@example.com\",\n  \"username\": \"amitv\",\n  \"password\": \"Amit@1234\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Logout (Invalidate Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        },
+        {
+          "name": "Update User Status (Enable/Disable)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/2/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "2", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Product Catalogue & Inventory (FR-2.x)",
+      "item": [
+        {
+          "name": "Public Products Catalogue (Guest Access)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/public/products?keyword=mouse&page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "public", "products"],
+              "query": [
+                { "key": "keyword", "value": "mouse" },
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Smartphones & Tablets\",\n  \"description\": \"Mobile devices and accessories\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dell Wireless Keyboard KB500\",\n  \"sku\": \"ELEC-DELL-KB500\",\n  \"description\": \"Full sized wireless keyboard with multimedia shortcut keys\",\n  \"price\": 1499.00,\n  \"costPrice\": 950.00,\n  \"stockQuantity\": 30,\n  \"reorderThreshold\": 8,\n  \"taxRate\": 18.00,\n  \"categoryId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"]
+            }
+          }
+        },
+        {
+          "name": "Stock In (Replenishment)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"ELEC-LOGI-M185\",\n  \"quantity\": 25,\n  \"reason\": \"Supplier purchase order delivery PO-9812\",\n  \"referenceId\": \"PO-9812\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/stock-in",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inventory", "stock-in"]
+            }
+          }
+        },
+        {
+          "name": "Stock Adjustment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"STAT-CLAS-REG400\",\n  \"newQuantity\": 15,\n  \"reason\": \"Physical audit inventory reconciliation\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/adjust",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inventory", "adjust"]
+            }
+          }
+        },
+        {
+          "name": "Get Low Stock Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/low-stock",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inventory", "low-stock"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Sales Transactions (FR-3.x)",
+      "item": [
+        {
+          "name": "Create POS Sale Transaction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.collectionVariables.set('saleId', jsonData.data.id);",
+                  "    console.log('Sale ID saved: ' + jsonData.data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 2,\n  \"items\": [\n    {\n      \"sku\": \"ELEC-LOGI-M185\",\n      \"quantity\": 2\n    },\n    {\n      \"sku\": \"GROC-NESC-CL200\",\n      \"quantity\": 1\n    }\n  ],\n  \"discountAmount\": 50.00,\n  \"notes\": \"Counter Walk-in Sale with festive discount\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sales"]
+            }
+          }
+        },
+        {
+          "name": "Get Sale By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/sales/{{saleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sales", "{{saleId}}"]
+            }
+          }
+        },
+        {
+          "name": "Download PDF Receipt",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/sales/{{saleId}}/receipt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sales", "{{saleId}}", "receipt"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Payments & Cash Drawer (FR-4.x)",
+      "item": [
+        {
+          "name": "Open Cash Drawer Shift",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.data && jsonData.data.id) {",
+                  "    pm.collectionVariables.set('shiftId', jsonData.data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"openingBalance\": 2000.00,\n  \"notes\": \"Morning shift starting float\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cash-drawer/shift/open",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cash-drawer", "shift", "open"]
+            }
+          }
+        },
+        {
+          "name": "Process Cash Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"saleId\": {{saleId}},\n  \"amount\": 3000.00,\n  \"paymentMode\": \"CASH\",\n  \"notes\": \"Paid in 500 currency notes\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Process Mock Digital Payment (Success)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"saleId\": {{saleId}},\n  \"amount\": 2500.00,\n  \"paymentMode\": \"DIGITAL\",\n  \"cardNumber\": \"4111222233334444\",\n  \"cardExpiry\": \"12/28\",\n  \"upiId\": \"customer@okhdfcbank\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Add Cash In/Out Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shiftId\": {{shiftId}},\n  \"entryType\": \"CASH_OUT\",\n  \"amount\": 150.00,\n  \"reason\": \"Petty cash for store stationery\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cash-drawer/entry",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cash-drawer", "entry"]
+            }
+          }
+        },
+        {
+          "name": "Close Shift & Reconcile Drawer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"closingBalance\": 4500.00,\n  \"notes\": \"Evening shift closed. Cash physical count verified.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cash-drawer/shift/{{shiftId}}/close",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cash-drawer", "shift", "{{shiftId}}", "close"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Analytics & Reports (FR-5.x)",
+      "item": [
+        {
+          "name": "Dashboard Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "dashboard"]
+            }
+          }
+        },
+        {
+          "name": "Sales Report (JSON)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "sales"]
+            }
+          }
+        },
+        {
+          "name": "Sales Report Export to Excel (XLSX)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/sales?format=xlsx",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "sales"],
+              "query": [
+                { "key": "format", "value": "xlsx" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sales Report Export to PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/sales?format=pdf",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "sales"],
+              "query": [
+                { "key": "format", "value": "pdf" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Inventory Report Export to XLSX",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/inventory?format=xlsx",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "inventory"],
+              "query": [
+                { "key": "format", "value": "xlsx" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cash Drawer Report Export to XLSX",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{managerToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/cash?format=xlsx",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "reports", "cash"],
+              "query": [
+                { "key": "format", "value": "xlsx" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Actuator & Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
