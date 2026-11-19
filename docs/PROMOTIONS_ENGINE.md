@@ -19,3 +19,6 @@ Applied coupon appears with green checkmark and 'Remove' button in order summary
 
 ## Database Persistence
 Passed as `discountAmount` and stored in `sales.discount_amount` column.
+
+## Validation Alerts
+Clear error toast when coupon is invalid or cart subtotal threshold is unmet.
