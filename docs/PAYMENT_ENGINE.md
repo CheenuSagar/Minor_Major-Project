@@ -10,3 +10,8 @@ Displays crisp QR code modal on screen with invoice total and store VPA.
 
 ## Supported UPI Apps
 Compatible with Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and all UPI 2.0 apps.
+
+## Tender Modes
+- CASH (Cash Tendered, Change Due)
+- UPI QR (Instant Dynamic QR)
+- CARD (Debit/Credit POS Swipe)
