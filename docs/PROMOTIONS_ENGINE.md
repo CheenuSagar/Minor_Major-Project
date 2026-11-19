@@ -25,3 +25,6 @@ Clear error toast when coupon is invalid or cart subtotal threshold is unmet.
 
 ## Manager Overrides
 Store Manager role can apply custom rupee discounts with reason note.
+
+## Celebratory UI
+Visual badge feedback upon successfully unlocking discounts.
