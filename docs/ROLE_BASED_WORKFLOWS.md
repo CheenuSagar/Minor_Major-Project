@@ -25,3 +25,6 @@ Saves selected workspace role in `sessionStorage` for persistence across refresh
 
 ## Contextual Action Bar
 Displays quick access icons (Scanner, Coupon, Receipt, AI) based on workspace role.
+
+## Animations
+CSS keyframe opacity and translation transitions when swapping active workspace.
