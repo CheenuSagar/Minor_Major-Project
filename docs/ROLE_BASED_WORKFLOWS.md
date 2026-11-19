@@ -10,3 +10,6 @@ Accelerated rapid checkout with barcode scanner, tender calculator, and printer 
 
 ### 3. Store Manager Control View
 Product catalog management, price updates, stock replenishment, and category filters.
+
+### 4. Store Owner Executive View
+Financial KPIs, gross margins, AI reorder recommendations, and peak traffic hours.
