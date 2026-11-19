@@ -15,3 +15,6 @@ Compatible with Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and all UPI 2.0 ap
 - CASH (Cash Tendered, Change Due)
 - UPI QR (Instant Dynamic QR)
 - CARD (Debit/Credit POS Swipe)
+
+## Cash Tender Calculator
+Cashier inputs amount received; system instantly computes exact change to return.
