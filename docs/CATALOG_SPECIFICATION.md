@@ -20,3 +20,6 @@ Displays exact units in stock with Amber warning when units <= 5.
 
 ## Metadata Captions
 Displays SKU code (e.g. `ELEC-SAND-USB64`) and category name beneath product title.
+
+## Quantity Spinners
+Allows cashier/customer to specify quantity (1 to stock) directly on product card.
