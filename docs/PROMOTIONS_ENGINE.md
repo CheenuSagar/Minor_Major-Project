@@ -10,3 +10,6 @@ Flat ₹50 discount applied on minimum order value of ₹300.
 
 ## NEXTSTORE20 Coupon
 20% celebratory discount for new store launch.
+
+## SUPERMCA Coupon
+Special student educational discount for academic demonstrations.
