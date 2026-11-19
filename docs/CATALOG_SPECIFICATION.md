@@ -17,3 +17,6 @@ Embedded local image as Base64 data URI to eliminate extra network requests and 
 
 ## Stock Threshold Badges
 Displays exact units in stock with Amber warning when units <= 5.
+
+## Metadata Captions
+Displays SKU code (e.g. `ELEC-SAND-USB64`) and category name beneath product title.
