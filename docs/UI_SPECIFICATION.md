@@ -22,3 +22,6 @@ Includes store logo, live clock display, and connection status indicator.
 
 ## Header Styling
 Sticky top with backdrop blur filter (`backdrop-filter: blur(12px)`).
+
+## Navigation Transitions
+Subtle 0.2s cubic-bezier transitions on hover and active navigation states.
