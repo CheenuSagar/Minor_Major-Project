@@ -22,3 +22,6 @@ Checkout button disabled with tooltip when cart is empty.
 
 ## Keyboard Navigation
 Keyboard navigation keys allow hands-free register operation.
+
+## Customer Notes
+Optional customer name and reference notes attached to sale transaction.
