@@ -14,3 +14,6 @@ Scanned SKU immediately increments quantity in cart without manual click.
 
 ## Scan Debouncer
 1200ms refractory cooldown prevents rapid multiple readings of the same item.
+
+## Handheld Barcode Scanners
+Supports USB and Bluetooth handheld barcode scanners emulating keyboard wedge input.
