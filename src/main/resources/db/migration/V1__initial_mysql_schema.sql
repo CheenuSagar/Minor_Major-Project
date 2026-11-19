@@ -74,3 +74,5 @@ CREATE TABLE IF NOT EXISTS sale_items (
 -- Indexes for O(1) POS Scans
 CREATE INDEX idx_products_sku ON products(sku);
 CREATE INDEX idx_products_barcode ON products(barcode);
+CREATE INDEX idx_sales_invoice ON sales(invoice_number);
+CREATE INDEX idx_sales_created ON sales(created_at);
