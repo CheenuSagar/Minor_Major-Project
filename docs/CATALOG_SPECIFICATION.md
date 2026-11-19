@@ -29,3 +29,6 @@ CSS active feedback ripple on 'Add to Bill' button for responsive touchscreens.
 
 ## Empty States
 Helpful prompt when no products match the search filter query.
+
+## Layout Modes
+Responsive multi-column CSS grid dynamically adapting to terminal screen width.
