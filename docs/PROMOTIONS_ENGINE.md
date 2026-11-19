@@ -22,3 +22,6 @@ Passed as `discountAmount` and stored in `sales.discount_amount` column.
 
 ## Validation Alerts
 Clear error toast when coupon is invalid or cart subtotal threshold is unmet.
+
+## Manager Overrides
+Store Manager role can apply custom rupee discounts with reason note.
