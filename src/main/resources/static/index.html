@@ -168,19 +168,56 @@
       white-space: nowrap;
       transition: all 0.2s;
     }
-    .cat-chip.active { background: #0f172a; color: white; border-color: #0f172a; }
+    .cat-chip.active { background: #0f172a; color: white; border-color: #0f172a; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15); }
+    .cat-chip i { font-size: 0.8rem; }
+
+    /* Active Category Notice Banner */
+    .cat-banner {
+      background: white;
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.15rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: all 0.2s ease;
+    }
+    .cat-banner-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #eff6ff;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .cat-pill {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+    }
 
     /* Product Cards */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.15rem;
     }
     .prod-card {
       background: white;
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 1.15rem;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -189,32 +226,60 @@
       overflow: hidden;
     }
     .prod-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -6px rgba(0,0,0,0.06), 0 4px 8px -4px rgba(0,0,0,0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 28px -6px rgba(0,0,0,0.08), 0 6px 12px -4px rgba(0,0,0,0.04);
       border-color: #cbd5e1;
+    }
+    .prod-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 135px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f8fafc;
+      margin-bottom: 0.75rem;
+      border: 1px solid #f1f5f9;
+    }
+    .prod-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+      display: block;
+    }
+    .prod-card:hover .prod-img-wrap img {
+      transform: scale(1.06);
+    }
+    .prod-card-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      backdrop-filter: blur(4px);
     }
     .prod-badge {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      padding: 0.2rem 0.5rem;
+      padding: 0.18rem 0.45rem;
       border-radius: 6px;
       background: #f1f5f9;
       color: #475569;
-      margin-bottom: 0.5rem;
     }
-    .prod-title { font-weight: 700; font-size: 0.95rem; line-height: 1.35; margin-bottom: 0.25rem; color: #1e293b; }
-    .prod-cat { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .prod-title { font-weight: 700; font-size: 0.92rem; line-height: 1.35; margin-bottom: 0.25rem; color: #1e293b; min-height: 2.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .prod-cat { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; font-weight: 500; }
     .prod-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-top: 0.75rem;
-      border-top: 1px solid #f8fafc;
+      border-top: 1px solid #f1f5f9;
     }
     .prod-price { font-weight: 800; font-size: 1.15rem; color: #0f172a; }
-    .stock-tag { font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.55rem; border-radius: 6px; }
+    .stock-tag { font-size: 0.72rem; font-weight: 700; padding: 0.22rem 0.5rem; border-radius: 6px; }
     .stock-tag.ok { background: #ecfdf5; color: #047857; }
     .stock-tag.low { background: #fff1f2; color: #be123c; }
 
@@ -421,11 +486,36 @@
               <input id="searchInput" onkeyup="filterProducts()" type="text" placeholder="Scan SKU barcode or search product name..." class="search-input">
             </div>
             <div class="cat-chips" id="catChips">
-              <button onclick="selectCategory(null)" class="cat-chip active">All Products</button>
-              <button onclick="selectCategory(1)" class="cat-chip">Electronics</button>
-              <button onclick="selectCategory(2)" class="cat-chip">Grocery</button>
-              <button onclick="selectCategory(3)" class="cat-chip">Stationery</button>
+              <button id="chip-all" onclick="selectCategory(null, this)" class="cat-chip active">
+                <i class="fa-solid fa-border-all"></i> All Products
+              </button>
+              <button id="chip-1" onclick="selectCategory(1, this)" class="cat-chip">
+                <i class="fa-solid fa-laptop"></i> Electronics
+              </button>
+              <button id="chip-2" onclick="selectCategory(2, this)" class="cat-chip">
+                <i class="fa-solid fa-basket-shopping"></i> Grocery
+              </button>
+              <button id="chip-3" onclick="selectCategory(3, this)" class="cat-chip">
+                <i class="fa-solid fa-pen-ruler"></i> Stationery
+              </button>
             </div>
+          </div>
+
+          <!-- Active Category Notice Bar (Persistent Filter Feedback) -->
+          <div id="categoryActiveBanner" class="cat-banner">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span id="catBannerIcon" class="cat-banner-icon"><i class="fa-solid fa-layer-group"></i></span>
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span id="catBannerTitle" style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">All Products</span>
+                  <span id="catBannerCount" class="cat-pill">12 Available</span>
+                </div>
+                <p id="catBannerDesc" style="font-size: 0.75rem; color: var(--text-muted); margin: 0.15rem 0 0;">Showing complete inventory across all departments</p>
+              </div>
+            </div>
+            <button id="catResetBtn" onclick="selectCategory(null, document.getElementById('chip-all'))" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; display: none;">
+              <i class="fa-solid fa-rotate-left"></i> Reset to All
+            </button>
           </div>
 
           <!-- Product Grid -->
@@ -752,14 +842,51 @@
   <!-- LOGIC SCRIPT -->
   <script>
     const defaultSeedProducts = [
-      { id: 1, sku: 'ELEC-LOGI-M185', name: 'Logitech M185 Wireless Mouse', price: 799.00, costPrice: 520.00, stockQuantity: 45, reorderThreshold: 10, categoryName: 'Electronics', active: true },
-      { id: 2, sku: 'ELEC-SAMS-T500', name: 'Samsung 25W Type-C Fast Charger', price: 1299.00, costPrice: 850.00, stockQuantity: 8, reorderThreshold: 12, categoryName: 'Electronics', active: true },
-      { id: 3, sku: 'GROC-NESC-CL200', name: 'Nescafe Classic Instant Coffee Jar 200g', price: 599.00, costPrice: 460.00, stockQuantity: 60, reorderThreshold: 15, categoryName: 'Grocery', active: true },
-      { id: 4, sku: 'STAT-CLAS-REG400', name: 'Classmate Long Notebook 400 Pages', price: 160.00, costPrice: 110.00, stockQuantity: 4, reorderThreshold: 10, categoryName: 'Stationery', active: true }
+      // 1. Electronics
+      { id: 1, sku: 'ELEC-LOGI-M185', name: 'Logitech M185 Wireless Mouse', price: 799.00, costPrice: 520.00, stockQuantity: 45, reorderThreshold: 10, categoryId: 1, categoryName: 'Electronics', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 2, sku: 'ELEC-SAMS-T500', name: 'Samsung 25W Type-C Fast Charger', price: 1299.00, costPrice: 850.00, stockQuantity: 8, reorderThreshold: 12, categoryId: 1, categoryName: 'Electronics', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 5, sku: 'ELEC-BOAT-ROK255', name: 'boAt Rockerz 255 Pro+ Earphones', price: 1499.00, costPrice: 950.00, stockQuantity: 25, reorderThreshold: 10, categoryId: 1, categoryName: 'Electronics', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 6, sku: 'ELEC-SAND-USB64', name: 'SanDisk Ultra 64GB USB 3.0 Pen Drive', price: 549.00, costPrice: 350.00, stockQuantity: 35, reorderThreshold: 12, categoryId: 1, categoryName: 'Electronics', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=400&q=80', active: true },
+
+      // 2. Grocery
+      { id: 3, sku: 'GROC-NESC-CL200', name: 'Nescafe Classic Instant Coffee Jar 200g', price: 599.00, costPrice: 460.00, stockQuantity: 60, reorderThreshold: 15, categoryId: 2, categoryName: 'Grocery', taxRate: 5.00, imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 7, sku: 'GROC-TATA-TEA500', name: 'Tata Tea Gold Premium 500g', price: 340.00, costPrice: 260.00, stockQuantity: 40, reorderThreshold: 15, categoryId: 2, categoryName: 'Grocery', taxRate: 5.00, imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 8, sku: 'GROC-CADB-SILK150', name: 'Cadbury Dairy Milk Silk Chocolate 150g', price: 175.00, costPrice: 130.00, stockQuantity: 50, reorderThreshold: 20, categoryId: 2, categoryName: 'Grocery', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 9, sku: 'GROC-AMUL-BUTTER', name: 'Amul Pasteurised Butter 500g', price: 275.00, costPrice: 220.00, stockQuantity: 30, reorderThreshold: 10, categoryId: 2, categoryName: 'Grocery', taxRate: 12.00, imageUrl: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=400&q=80', active: true },
+
+      // 3. Stationery
+      { id: 4, sku: 'STAT-CLAS-REG400', name: 'Classmate Long Notebook 400 Pages', price: 160.00, costPrice: 110.00, stockQuantity: 4, reorderThreshold: 10, categoryId: 3, categoryName: 'Stationery', taxRate: 12.00, imageUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 10, sku: 'STAT-PARK-JOTTER', name: 'Parker Jotter Stainless Steel Ball Pen', price: 320.00, costPrice: 210.00, stockQuantity: 15, reorderThreshold: 8, categoryId: 3, categoryName: 'Stationery', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 11, sku: 'STAT-CASI-FX991', name: 'Casio FX-991CW Scientific Calculator', price: 1295.00, costPrice: 980.00, stockQuantity: 12, reorderThreshold: 5, categoryId: 3, categoryName: 'Stationery', taxRate: 18.00, imageUrl: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=400&q=80', active: true },
+      { id: 12, sku: 'STAT-POST-IT300', name: 'Post-it 3x3 Self-Adhesive Notes Pack', price: 145.00, costPrice: 90.00, stockQuantity: 22, reorderThreshold: 10, categoryId: 3, categoryName: 'Stationery', taxRate: 12.00, imageUrl: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=400&q=80', active: true }
     ];
+
+    const productImages = {
+      'ELEC-LOGI-M185': 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=80',
+      'ELEC-SAMS-T500': 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80',
+      'ELEC-BOAT-ROK255': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80',
+      'ELEC-SAND-USB64': 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=400&q=80',
+      'GROC-NESC-CL200': 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80',
+      'GROC-TATA-TEA500': 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80',
+      'GROC-CADB-SILK150': 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80',
+      'GROC-AMUL-BUTTER': 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=400&q=80',
+      'STAT-CLAS-REG400': 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=400&q=80',
+      'STAT-PARK-JOTTER': 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80',
+      'STAT-CASI-FX991': 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=400&q=80',
+      'STAT-POST-IT300': 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=400&q=80'
+    };
+
+    function getProductImage(p) {
+      if (p.imageUrl) return p.imageUrl;
+      if (productImages[p.sku]) return productImages[p.sku];
+      if (p.categoryName === 'Electronics') return 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80';
+      if (p.categoryName === 'Grocery') return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80';
+      return 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80';
+    }
 
     let token = localStorage.getItem('pos_token') || '';
     let user = JSON.parse(localStorage.getItem('pos_user') || 'null');
+    let masterProducts = [...defaultSeedProducts];
     let products = [...defaultSeedProducts];
     let cart = [];
     let checkoutMode = 'CASH';
@@ -828,19 +955,106 @@
 
     async function fetchCatalogue(kw = '', catId = null) {
       try {
-        let url = `/api/public/products?size=24`;
+        let url = `/api/public/products?size=50`;
         if (kw) url += `&keyword=${encodeURIComponent(kw)}`;
         if (catId) url += `&categoryId=${catId}`;
 
         const res = await fetch(url);
         const data = await res.json();
         if (data.success && data.data && data.data.content && data.data.content.length > 0) {
+          if (!kw && !catId) {
+            masterProducts = data.data.content;
+          }
           products = data.data.content;
           renderProducts(products);
+        } else {
+          applyClientFilter(kw, catId);
         }
       } catch (e) {
-        console.warn('API fetch error, using seed catalogue fallback', e);
+        console.warn('API fetch error, using local catalogue filter fallback', e);
+        applyClientFilter(kw, catId);
+      }
+    }
+
+    function applyClientFilter(kw = '', catId = null) {
+      let filtered = [...masterProducts];
+      if (catId) {
+        filtered = filtered.filter(p => p.categoryId === catId || (p.category && p.category.id === catId));
+      }
+      if (kw) {
+        const term = kw.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.name.toLowerCase().includes(term) || 
+          p.sku.toLowerCase().includes(term) ||
+          (p.categoryName && p.categoryName.toLowerCase().includes(term))
+        );
+      }
+      products = filtered;
+      renderProducts(products);
+    }
+
+    function updateCategoryBanner(catId, count = null) {
+      const icon = document.getElementById('catBannerIcon');
+      const title = document.getElementById('catBannerTitle');
+      const desc = document.getElementById('catBannerDesc');
+      const countPill = document.getElementById('catBannerCount');
+      const resetBtn = document.getElementById('catResetBtn');
+      const itemCount = count !== null ? count : products.length;
+
+      if (!catId) {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-layer-group"></i>';
+        if (title) title.innerText = 'All Products';
+        if (desc) desc.innerText = 'Showing complete catalog inventory across all departments';
+        if (countPill) countPill.innerText = `${itemCount} Available`;
+        if (resetBtn) resetBtn.style.display = 'none';
+      } else if (catId === 1) {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-laptop text-blue-600"></i>';
+        if (title) title.innerText = 'Electronics Department';
+        if (desc) desc.innerText = 'Computer accessories, cables, chargers and audio gadgets';
+        if (countPill) countPill.innerText = `${itemCount} Items`;
+        if (resetBtn) resetBtn.style.display = 'inline-flex';
+      } else if (catId === 2) {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-basket-shopping text-emerald-600"></i>';
+        if (title) title.innerText = 'Grocery & FMCG';
+        if (desc) desc.innerText = 'Beverages, packaged food, tea, coffee and confectionery';
+        if (countPill) countPill.innerText = `${itemCount} Items`;
+        if (resetBtn) resetBtn.style.display = 'inline-flex';
+      } else if (catId === 3) {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-pen-ruler text-amber-600"></i>';
+        if (title) title.innerText = 'Stationery & Office';
+        if (desc) desc.innerText = 'Spiral notebooks, pens, sticky notes and calculators';
+        if (countPill) countPill.innerText = `${itemCount} Items`;
+        if (resetBtn) resetBtn.style.display = 'inline-flex';
+      }
+    }
+
+    function selectCategory(catId, btn) {
+      selectedCat = catId;
+
+      // 1. Maintain active chip visual state
+      document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const targetId = catId ? `chip-${catId}` : 'chip-all';
+        const el = document.getElementById(targetId);
+        if (el) el.classList.add('active');
+      }
+
+      // 2. Trigger filtered search & refresh notice bar
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const input = document.getElementById('searchInput') || document.getElementById('productSearchInput');
+      const q = input ? input.value.trim() : '';
+
+      if (!q && !selectedCat) {
+        products = [...masterProducts];
         renderProducts(products);
+      } else {
+        applyClientFilter(q, selectedCat);
+        fetchCatalogue(q, selectedCat);
       }
     }
 
@@ -849,32 +1063,48 @@
       if (!grid) return;
       grid.innerHTML = '';
 
+      updateCategoryBanner(selectedCat, list ? list.length : 0);
+
       if (!list || list.length === 0) {
-        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 2rem; color: #94a3b8;">No products found matching search</div>';
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding: 3rem 1rem; color: #94a3b8; background: white; border: 1px dashed var(--card-border); border-radius: var(--radius);">
+            <i class="fa-solid fa-box-open" style="font-size: 2.5rem; opacity: 0.35; margin-bottom: 0.75rem; display: block;"></i>
+            <h4 style="font-weight: 700; color: #475569; margin-bottom: 0.25rem;">No products found</h4>
+            <p style="font-size: 0.8rem; margin: 0;">Try searching for another keyword or select All Products</p>
+            <button onclick="selectCategory(null, document.getElementById('chip-all'))" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.8rem;">
+              <i class="fa-solid fa-rotate-left"></i> View All Products
+            </button>
+          </div>
+        `;
         return;
       }
 
       list.forEach(p => {
         const isLow = p.stockQuantity <= (p.reorderThreshold || 10);
+        const imgUrl = getProductImage(p);
         const card = document.createElement('div');
         card.className = 'prod-card';
         card.innerHTML = `
           <div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span class="prod-badge">${p.sku}</span>
-              <span class="stock-tag ${isLow ? 'low' : 'ok'}">${isLow ? 'LOW ' : ''}${p.stockQuantity} in stock</span>
+            <div class="prod-img-wrap">
+              <img src="${imgUrl}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x300/f1f5f9/475569?text=' + encodeURIComponent('${p.sku}')">
+              <span class="stock-tag ${isLow ? 'low' : 'ok'} prod-card-badge">${isLow ? 'LOW STOCK' : 'IN STOCK'}</span>
             </div>
-            <div class="prod-title">${p.name}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <span class="prod-badge">${p.sku}</span>
+              <span style="font-size: 0.72rem; font-weight: 700; color: ${isLow ? 'var(--danger)' : '#475569'};">${p.stockQuantity} in stock</span>
+            </div>
+            <div class="prod-title" title="${p.name}">${p.name}</div>
             <div class="prod-cat">${p.categoryName || 'Standard'}</div>
           </div>
           <div class="prod-footer" style="flex-direction: column; gap: 0.5rem; align-items: stretch;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="prod-price">₹ ${Number(p.price).toFixed(2)}</span>
-              <span style="font-size: 0.7rem; color: var(--text-muted);">Max: ${p.stockQuantity}</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">GST: ${p.taxRate || 18}%</span>
             </div>
             <div style="display: flex; gap: 0.4rem; align-items: center;">
               <input id="card-qty-${p.id}" type="number" value="1" min="1" max="${p.stockQuantity}" style="width: 52px; text-align: center; border: 1px solid var(--card-border); border-radius: 8px; padding: 0.35rem; font-size: 0.8rem; font-weight: 700;">
-              <button onclick="addToBillWithInput(${p.id})" class="btn btn-primary" style="flex: 1; justify-content: center; padding: 0.4rem 0.6rem; font-size: 0.75rem;">
+              <button onclick="addToBillWithInput(${p.id})" class="btn btn-primary" style="flex: 1; justify-content: center; padding: 0.45rem 0.6rem; font-size: 0.78rem;">
                 <i class="fa-solid fa-cart-plus mr-1"></i> Add to Bill
               </button>
             </div>
@@ -882,23 +1112,6 @@
         `;
         grid.appendChild(card);
       });
-    }
-
-    function filterProducts() {
-      const input = document.getElementById('searchInput') || document.getElementById('productSearchInput');
-      const q = input ? input.value.trim() : '';
-      if (!q && !selectedCat) {
-        renderProducts(products);
-      } else {
-        fetchCatalogue(q, selectedCat);
-      }
-    }
-
-    function selectCategory(catId, btn) {
-      selectedCat = catId;
-      document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      filterProducts();
     }
 
     // Quick Add Barcode / SKU
