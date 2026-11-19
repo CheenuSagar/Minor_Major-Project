@@ -17,3 +17,6 @@ Scanned SKU immediately increments quantity in cart without manual click.
 
 ## Handheld Barcode Scanners
 Supports USB and Bluetooth handheld barcode scanners emulating keyboard wedge input.
+
+## Manual Barcode Entry
+Fallback text box allows typing numeric barcode or SKU directly.
