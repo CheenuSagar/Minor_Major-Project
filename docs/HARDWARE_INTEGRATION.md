@@ -23,3 +23,6 @@ Fallback text box allows typing numeric barcode or SKU directly.
 
 ## Mute Toggle
 Sound toggle allows silent operation in noise-sensitive retail environments.
+
+## Camera Fallbacks
+Clear instructions if camera permission is denied or no webcam is attached.
