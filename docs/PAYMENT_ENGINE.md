@@ -7,3 +7,6 @@ URI Format: `upi://pay?pa=store@upi&pn=NextStore%20Retail&am={TOTAL}&cu=INR&tn=I
 
 ## Modal Presentation
 Displays crisp QR code modal on screen with invoice total and store VPA.
+
+## Supported UPI Apps
+Compatible with Google Pay, PhonePe, Paytm, BHIM, Amazon Pay, and all UPI 2.0 apps.
