@@ -25,3 +25,6 @@ Keyboard navigation keys allow hands-free register operation.
 
 ## Customer Notes
 Optional customer name and reference notes attached to sale transaction.
+
+## State Persistence
+Cart contents stored in browser storage to guard against accidental browser close.
