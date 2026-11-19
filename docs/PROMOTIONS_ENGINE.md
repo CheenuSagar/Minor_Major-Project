@@ -13,3 +13,6 @@ Flat ₹50 discount applied on minimum order value of ₹300.
 
 ## SUPERMCA Coupon
 Special student educational discount for academic demonstrations.
+
+## Coupon Pill
+Applied coupon appears with green checkmark and 'Remove' button in order summary.
