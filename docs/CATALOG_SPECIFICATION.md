@@ -23,3 +23,6 @@ Displays SKU code (e.g. `ELEC-SAND-USB64`) and category name beneath product tit
 
 ## Quantity Spinners
 Allows cashier/customer to specify quantity (1 to stock) directly on product card.
+
+## Button Feedback
+CSS active feedback ripple on 'Add to Bill' button for responsive touchscreens.
