@@ -8,3 +8,6 @@
 - minimumIdle: 2
 - connectionTimeout: 30000ms
 - idleTimeout: 600000ms
+
+## JDBC URL Parameters
+`createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true`
