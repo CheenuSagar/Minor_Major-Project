@@ -22,3 +22,6 @@ Character set: `utf8mb4`, Collation: `utf8mb4_unicode_ci` for international prod
 - `DB_URL`: JDBC URL override
 - `DB_USERNAME`: Username (default root)
 - `DB_PASSWORD`: Password (default root)
+
+## Startup Scripts
+- `run-mysql.bat`: 1-click startup using active MySQL profile on port 3306.
