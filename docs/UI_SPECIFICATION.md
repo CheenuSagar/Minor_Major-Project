@@ -37,3 +37,6 @@ Primary action buttons with active depression scaling (`transform: scale(0.98)`)
 - In Stock: Green (`#16a34a`)
 - Low Stock: Amber (`#d97706`)
 - Out of Stock: Red (`#dc2626`)
+
+## Scrollbar Styling
+Custom slim scrollbar matching light mode theme aesthetic.
