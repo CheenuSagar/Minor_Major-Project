@@ -14,3 +14,6 @@ Embedded high-res visual for SanDisk Ultra 64GB USB 3.0 Pen Drive.
 
 ## Base64 Inlining
 Embedded local image as Base64 data URI to eliminate extra network requests and auth bypass.
+
+## Stock Threshold Badges
+Displays exact units in stock with Amber warning when units <= 5.
