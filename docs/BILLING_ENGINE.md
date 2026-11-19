@@ -13,3 +13,6 @@ Fixed subtotal, tax amount, discount deduction, and net payable grand total.
 
 ## Clear Bill
 Quick 'Clear Register' button resets current active cart for the next customer.
+
+## Cart Counter Badge
+Badge in the top right shows total number of items currently in the active bill.
