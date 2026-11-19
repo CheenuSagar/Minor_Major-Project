@@ -11,3 +11,6 @@
 
 ## JDBC URL Parameters
 `createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true`
+
+## Hibernate DDL Auto
+Set to `update` for automated schema creation and table evolution.
