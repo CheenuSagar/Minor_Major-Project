@@ -25,3 +25,7 @@ Sticky top with backdrop blur filter (`backdrop-filter: blur(12px)`).
 
 ## Navigation Transitions
 Subtle 0.2s cubic-bezier transitions on hover and active navigation states.
+
+## Card Elevation
+Soft shadows: `box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05)`
+Border radius: `1rem` (16px).
