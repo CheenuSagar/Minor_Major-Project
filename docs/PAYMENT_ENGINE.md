@@ -24,3 +24,6 @@ Simulated real-time payment confirmation verifying funds receipt.
 
 ## Audio Feedback
 Dual-tone chime signals successful payment to cashier and customer.
+
+## Reference Hash
+Each transaction generates a unique alphanumeric reference ID for bank audit.
