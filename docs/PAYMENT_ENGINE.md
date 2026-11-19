@@ -21,3 +21,6 @@ Cashier inputs amount received; system instantly computes exact change to return
 
 ## Payment Verification
 Simulated real-time payment confirmation verifying funds receipt.
+
+## Audio Feedback
+Dual-tone chime signals successful payment to cashier and customer.
