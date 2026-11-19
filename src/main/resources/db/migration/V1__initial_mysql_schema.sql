@@ -76,3 +76,5 @@ CREATE INDEX idx_products_sku ON products(sku);
 CREATE INDEX idx_products_barcode ON products(barcode);
 CREATE INDEX idx_sales_invoice ON sales(invoice_number);
 CREATE INDEX idx_sales_created ON sales(created_at);
+CREATE INDEX idx_sale_items_sale ON sale_items(sale_id);
+CREATE INDEX idx_sale_items_product ON sale_items(product_id);
