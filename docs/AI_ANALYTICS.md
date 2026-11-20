@@ -12,3 +12,6 @@ Dynamic banner showing 'Runs out in X days' based on average daily units sold.
 - Fast-Moving: Sales velocity > 5 units/day
 - Medium-Moving: 1 - 5 units/day
 - Slow-Moving: < 1 unit/day
+
+## Inventory Health Gauge
+Visual radial indicator illustrating ratio of healthy stock vs low stock.
