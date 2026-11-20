@@ -21,3 +21,6 @@ Computes gross profit margins `(Price - Cost) / Price` for overall store invento
 
 ## Dead Stock Alerts
 Flags items with zero sales movements in the last 30 days to prevent capital lockup.
+
+## Purchase Orders
+Generates pre-filled vendor purchase order with recommended reorder quantity.
