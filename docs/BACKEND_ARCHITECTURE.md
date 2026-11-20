@@ -11,3 +11,6 @@ Custom JPQL queries in `ProductRepository` returning items below `low_stock_thre
 
 ## Concurrency Control
 Optimistic stock deduction handles concurrent cashier checkouts without overselling.
+
+## Security Whitelist
+Configured `SecurityConfig` to permit `/`, `/index.html`, `/static/**`, and favicon assets.
