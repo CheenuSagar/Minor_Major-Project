@@ -15,3 +15,6 @@ Dynamic banner showing 'Runs out in X days' based on average daily units sold.
 
 ## Inventory Health Gauge
 Visual radial indicator illustrating ratio of healthy stock vs low stock.
+
+## Margin Metrics
+Computes gross profit margins `(Price - Cost) / Price` for overall store inventory.
