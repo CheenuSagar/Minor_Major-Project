@@ -26,3 +26,6 @@ Footer specifies return window (7 days), store helpline, and GSTIN number.
 
 ## Loyalty Points
 Calculates and displays points earned on current transaction (1 point / ₹100).
+
+## Currency Localization
+All currency values rendered with ₹ symbol and 2 decimal precision (e.g. ₹549.00).
