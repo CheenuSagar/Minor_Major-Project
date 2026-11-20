@@ -14,3 +14,6 @@ Optimistic stock deduction handles concurrent cashier checkouts without oversell
 
 ## Security Whitelist
 Configured `SecurityConfig` to permit `/`, `/index.html`, `/static/**`, and favicon assets.
+
+## JWT Resilience
+JWT filter gracefully returns 401 without stack traces on expired tokens.
