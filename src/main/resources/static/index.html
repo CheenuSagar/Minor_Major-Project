@@ -488,44 +488,337 @@
       animation: toastIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes toastIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  
+    /* --- NextStore Showcase Landing Page Styles --- */
+    .hero-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #fff1f2 50%, #fee2e2 100%);
+      border: 1px solid #fecaca;
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.08);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      border: 1px solid #fca5a5;
+      color: #dc2626;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.1);
+    }
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: #475569;
+      max-width: 680px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.6;
+    }
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+    .hero-stat-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .hero-stat-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #b91c1c;
+      margin-bottom: 0.2rem;
+    }
+    .hero-stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .portal-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .portal-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+    }
+    .portal-card:hover {
+      transform: translateY(-4px);
+      border-color: #ef4444;
+      box-shadow: 0 12px 20px -3px rgba(239, 68, 68, 0.12);
+    }
+    .portal-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: #fff5f5;
+    }
+    .role-auth-chip {
+      padding: 0.5rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: #f8fafc;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s;
+    }
+    .role-auth-chip:hover, .role-auth-chip.active {
+      border-color: #ef4444;
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
   </style>
 </head>
 <body>
 
   <!-- Top Navbar -->
   <header class="navbar">
-    <div class="brand">
+    <div class="brand" onclick="showLandingPage()" style="cursor: pointer;">
       <div class="brand-logo"><i class="fa-solid fa-cash-register"></i></div>
       <div>
         <div class="brand-title" style="color: #0f172a;">NextStore</div>
-        <div id="brandSubtitle" class="brand-subtitle">Smarter Billing, Faster Retail • Role-Based System</div>
+        <div id="brandSubtitle" class="brand-subtitle">Smarter Billing, Faster Retail • Role-Based Security</div>
       </div>
     </div>
 
     <div class="nav-actions">
-      <!-- Active Role Pill -->
-      <span id="roleBadgePill" class="role-badge badge-customer">
-        <i class="fa-solid fa-basket-shopping" id="roleBadgeIcon"></i> <span id="roleBadgeText">Customer Store</span>
-      </span>
-
-      <div id="authPill" class="user-pill">
-        <span class="dot"></span>
-        <span id="navUsername">Rohan Verma</span>
-        <span id="navRole" style="color: var(--text-muted); font-size: 0.75rem;">| CUSTOMER</span>
+      <!-- Logged Out Actions -->
+      <div id="loggedOutActions" style="display: flex; align-items: center; gap: 0.6rem;">
+        <button onclick="scrollToCatalogue()" class="btn btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.9rem;">
+          <i class="fa-solid fa-store mr-1"></i> Live Storefront
+        </button>
+        <button onclick="openAuthModal('LOGIN')" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.5rem 1rem; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);">
+          <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In / Portal Login
+        </button>
+        <button onclick="openAuthModal('REGISTER')" class="btn btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.9rem;">
+          <i class="fa-solid fa-user-plus mr-1"></i> Register
+        </button>
       </div>
 
-      <!-- Switch Role Portal Modal Trigger -->
-      <button onclick="openModal('roleModal')" class="btn btn-primary" style="box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);">
-        <i class="fa-solid fa-users-gear"></i> Switch Role
-      </button>
+      <!-- Logged In Actions -->
+      <div id="loggedInActions" style="display: none; align-items: center; gap: 0.6rem;">
+        <button onclick="showLandingPage()" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.45rem 0.8rem;" title="View Landing Page">
+          <i class="fa-solid fa-house"></i> Overview
+        </button>
+        <span id="roleBadgePill" class="role-badge badge-customer">
+          <i class="fa-solid fa-basket-shopping" id="roleBadgeIcon"></i> <span id="roleBadgeText">Customer Store</span>
+        </span>
 
-      <!-- Logout -->
-      <button onclick="handleLogout()" class="btn btn-secondary" title="Sign Out">
-        <i class="fa-solid fa-arrow-right-from-bracket text-slate-500"></i>
-      </button>
+        <div id="authPill" class="user-pill">
+          <span class="dot"></span>
+          <span id="navUsername">Rohan Sharma</span>
+          <span id="navRole" style="color: var(--text-muted); font-size: 0.75rem;">| CUSTOMER</span>
+        </div>
+
+        <button onclick="handleLogout()" class="btn btn-secondary" title="Sign Out & Switch Account" style="color: #dc2626; border-color: #fecaca; background: #fff5f5;">
+          <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Sign Out
+        </button>
+      </div>
     </div>
   </header>
 
+
+  <!-- NextStore Public Showcase / Landing Page -->
+  <section id="landingShowcase" style="max-width: 1400px; margin: 1.5rem auto 3rem; padding: 0 1.5rem;">
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="hero-badge">
+        <i class="fa-solid fa-sparkles"></i> NextStore Retail Operating System v2.0 • MySQL Database Connected
+      </div>
+      <h1 class="hero-title">Smarter Billing, Faster Retail.</h1>
+      <p class="hero-subtitle">
+        Enterprise multi-role Point of Sale and inventory intelligence system. Featuring HTML5 Camera Barcode Scanning, 
+        Dynamic UPI QR Contactless Billing, WhatsApp Digital Receipts, and AI Demand Forecasting.
+      </p>
+
+      <!-- Key Stats Bar -->
+      <div class="hero-stats-grid">
+        <div class="hero-stat-card">
+          <div class="hero-stat-val">24</div>
+          <div class="hero-stat-label">Products in Master Catalog</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-val">&lt; 1s</div>
+          <div class="hero-stat-label">Barcode Billing Speed</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-val">100%</div>
+          <div class="hero-stat-label">Contactless UPI QR</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-val">MySQL 8.0</div>
+          <div class="hero-stat-label">Relational Persistence</div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="hero-actions">
+        <button onclick="openAuthModal('LOGIN')" class="btn btn-primary" style="font-size: 1rem; padding: 0.85rem 1.8rem; box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);">
+          <i class="fa-solid fa-right-to-bracket mr-2"></i> Open Staff / Portal Login
+        </button>
+        <button onclick="openAuthModal('REGISTER')" class="btn btn-secondary" style="font-size: 1rem; padding: 0.85rem 1.6rem; border-color: #cbd5e1;">
+          <i class="fa-solid fa-user-plus mr-2"></i> Register Customer Account
+        </button>
+        <button onclick="enterStoreAsCustomerGuest()" class="btn btn-secondary" style="font-size: 1rem; padding: 0.85rem 1.6rem; background: #ffffff;">
+          <i class="fa-solid fa-store mr-2"></i> Browse 24 Products Live
+        </button>
+      </div>
+    </div>
+
+    <!-- 4 Role Portals Showcase Section -->
+    <div style="margin-bottom: 3.5rem;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Dedicated Role-Based Portals</h2>
+        <p style="color: #64748b; font-size: 0.95rem;">Each role features a customized interface protected by unique authentication credentials</p>
+      </div>
+
+      <div class="portal-showcase-grid">
+        <!-- Portal 1: Customer -->
+        <div class="portal-card">
+          <div>
+            <div class="portal-icon" style="background: #eff6ff; color: #2563eb;">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: #0f172a; margin-bottom: 0.5rem;">Customer Storefront</div>
+            <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
+              Self-service product catalogue browsing, interactive multi-category search, responsive cart, Dynamic UPI QR payment, and WhatsApp receipt download.
+            </p>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
+              <strong>ID:</strong> <code style="color: #2563eb;">customer</code> | <strong>Pass:</strong> <code style="color: #2563eb;">Customer@2026</code>
+            </div>
+          </div>
+          <button onclick="openAuthModal('LOGIN', 'CUSTOMER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #2563eb; border-color: #bfdbfe; background: #eff6ff;">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Customer
+          </button>
+        </div>
+
+        <!-- Portal 2: Cashier -->
+        <div class="portal-card">
+          <div>
+            <div class="portal-icon" style="background: #f0fdf4; color: #16a34a;">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: #0f172a; margin-bottom: 0.5rem;">Cashier Billing Counter</div>
+            <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
+              Accelerated high-speed checkout, HTML5 webcam barcode scanner with synthetic audio beep, cash tender calculator, thermal print, and shift float audits.
+            </p>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
+              <strong>ID:</strong> <code style="color: #16a34a;">cashier</code> | <strong>Pass:</strong> <code style="color: #16a34a;">Cashier@2026</code>
+            </div>
+          </div>
+          <button onclick="openAuthModal('LOGIN', 'CASHIER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #16a34a; border-color: #bbf7d0; background: #f0fdf4;">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Cashier
+          </button>
+        </div>
+
+        <!-- Portal 3: Store Manager -->
+        <div class="portal-card">
+          <div>
+            <div class="portal-icon" style="background: #faf5ff; color: #9333ea;">
+              <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: #0f172a; margin-bottom: 0.5rem;">Store Manager Portal</div>
+            <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
+              Complete inventory control, product catalog management, supplier stock-inward replenishment, damaged item write-offs, and cashier shift monitoring.
+            </p>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
+              <strong>ID:</strong> <code style="color: #9333ea;">manager</code> | <strong>Pass:</strong> <code style="color: #9333ea;">Manager@2026</code>
+            </div>
+          </div>
+          <button onclick="openAuthModal('LOGIN', 'MANAGER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #9333ea; border-color: #e9d5ff; background: #faf5ff;">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Store Manager
+          </button>
+        </div>
+
+        <!-- Portal 4: Store Owner -->
+        <div class="portal-card">
+          <div>
+            <div class="portal-icon" style="background: #fffbeb; color: #d97706;">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: #0f172a; margin-bottom: 0.5rem;">Store Owner Dashboard</div>
+            <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
+              Executive financial KPIs, gross profit margins, AI inventory demand forecaster, dead-stock detection, peak retail rush hours, and PDF/Excel executive reports.
+            </p>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
+              <strong>ID:</strong> <code style="color: #d97706;">owner</code> | <strong>Pass:</strong> <code style="color: #d97706;">Owner@2026</code>
+            </div>
+          </div>
+          <button onclick="openAuthModal('LOGIN', 'OWNER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #d97706; border-color: #fde68a; background: #fffbeb;">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Store Owner
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="workspaceSection" style="display: none;">
   <!-- Navigation Tabs -->
   <div class="tabs-bar">
     <button onclick="switchTab('pos')" id="tabBtn-pos" class="tab-btn active">
@@ -893,6 +1186,8 @@
 
   </main>
 
+  </div><!-- /#workspaceSection -->
+
   <!-- Footer -->
   <footer style="margin-top: auto; padding: 1.25rem 1.5rem; border-top: 1px solid var(--card-border); background: white; font-size: 0.78rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
     <div>
@@ -914,95 +1209,133 @@
 
   <!-- Checkout Modal -->
   
-  <!-- Switch Role / Login Modal -->
-  <div id="roleModal" class="modal-overlay hidden">
-    <div class="modal-box" style="max-width: 700px; width: 95%;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.85rem;">
-        <div>
-          <h3 style="font-weight: 800; font-size: 1.25rem; color: #0f172a;">Select User Portal / Role</h3>
-          <p style="font-size: 0.78rem; color: var(--text-muted);">Switch between customized interfaces designed for each stakeholder</p>
-        </div>
-        <button onclick="closeModal('roleModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+  <!-- Dedicated Portal Authentication Modal (Login & Registration) -->
+  <div id="authModal" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width: 580px; width: 95%; padding: 0; overflow: hidden; border-radius: 18px;">
+      
+      <!-- Modal Header with Tab Switcher -->
+      <div style="display: flex; border-bottom: 1px solid var(--card-border); background: #f8fafc;">
+        <button id="authTabLoginBtn" onclick="switchAuthTab('LOGIN')" class="auth-tab-btn active">
+          <i class="fa-solid fa-right-to-bracket mr-1"></i> Portal Sign In
+        </button>
+        <button id="authTabRegBtn" onclick="switchAuthTab('REGISTER')" class="auth-tab-btn">
+          <i class="fa-solid fa-user-plus mr-1"></i> Customer Register
+        </button>
+        <button onclick="closeModal('authModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0 1.25rem; color: var(--text-muted);">&times;</button>
       </div>
 
-      <!-- 4 Role Cards Grid -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        
-        <!-- Role 1: Customer -->
-        <div onclick="selectAppRole('CUSTOMER')" class="role-select-card" id="cardRole-CUSTOMER">
-          <div class="role-icon" style="background: #eff6ff; color: #2563eb;">
-            <i class="fa-solid fa-basket-shopping"></i>
+      <div style="padding: 1.5rem;">
+
+        <!-- TAB 1: LOGIN FORM -->
+        <div id="authLoginForm">
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 0.4rem;">
+              Select Target Portal / Role:
+            </label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;" id="loginRoleChips">
+              <div onclick="selectAuthRole('CUSTOMER')" class="role-auth-chip active" id="authChip-CUSTOMER">
+                <i class="fa-solid fa-basket-shopping text-blue-600"></i> Customer Store
+              </div>
+              <div onclick="selectAuthRole('CASHIER')" class="role-auth-chip" id="authChip-CASHIER">
+                <i class="fa-solid fa-calculator text-emerald-600"></i> Cashier Terminal
+              </div>
+              <div onclick="selectAuthRole('MANAGER')" class="role-auth-chip" id="authChip-MANAGER">
+                <i class="fa-solid fa-boxes-stacked text-purple-600"></i> Store Manager
+              </div>
+              <div onclick="selectAuthRole('OWNER')" class="role-auth-chip" id="authChip-OWNER">
+                <i class="fa-solid fa-chart-pie text-amber-600"></i> Store Owner
+              </div>
+            </div>
           </div>
-          <div>
-            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">Customer Storefront</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0.5rem;">Browse public catalogue, add to cart, self-order & download receipts.</p>
-            <span class="role-badge badge-customer" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">
-              Role: Customer
-            </span>
+
+          <!-- Error Alert Banner -->
+          <div id="loginErrorAlert" style="display: none; background: #fef2f2; border: 1px solid #f87171; color: #b91c1c; border-radius: 10px; padding: 0.75rem 1rem; font-size: 0.8rem; margin-bottom: 1rem; align-items: flex-start; gap: 0.6rem;">
+            <i class="fa-solid fa-circle-exclamation" style="margin-top: 0.15rem; font-size: 0.95rem;"></i>
+            <span id="loginErrorText">Access Denied: Invalid credentials.</span>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Username or Email</label>
+            <div class="search-input-wrapper" style="border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; background: #ffffff;">
+              <i class="fa-solid fa-user" style="color: #94a3b8;"></i>
+              <input id="inputAuthUser" type="text" placeholder="Enter username" class="search-input" style="font-size: 0.85rem;" autocomplete="username">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <label style="font-size: 0.78rem; font-weight: 700; color: #334155;">Password</label>
+              <button type="button" onclick="togglePassVisibility()" style="background: none; border: none; font-size: 0.75rem; color: #64748b; cursor: pointer;">
+                <i class="fa-solid fa-eye" id="passEyeIcon"></i> Show
+              </button>
+            </div>
+            <div class="search-input-wrapper" style="border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; background: #ffffff;">
+              <i class="fa-solid fa-lock" style="color: #94a3b8;"></i>
+              <input id="inputAuthPass" type="password" placeholder="Enter password" class="search-input" style="font-size: 0.85rem;" autocomplete="current-password">
+            </div>
+          </div>
+
+          <button id="btnSubmitPortalLogin" onclick="handlePortalLoginSubmit()" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; font-size: 0.92rem; font-weight: 700; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);">
+            <i class="fa-solid fa-shield-halved mr-1"></i> Authenticate & Enter Portal
+          </button>
+
+          <!-- 1-Click Demo Credentials Quick-Fill -->
+          <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--card-border);">
+            <div style="font-size: 0.72rem; font-weight: 700; color: #64748b; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+              1-Click Demo Fill Credentials:
+            </div>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+              <button type="button" onclick="autofillDemoCreds('CUSTOMER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
+                <i class="fa-solid fa-basket-shopping text-blue-600 mr-1"></i> Customer
+              </button>
+              <button type="button" onclick="autofillDemoCreds('CASHIER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
+                <i class="fa-solid fa-calculator text-emerald-600 mr-1"></i> Cashier
+              </button>
+              <button type="button" onclick="autofillDemoCreds('MANAGER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
+                <i class="fa-solid fa-boxes-stacked text-purple-600 mr-1"></i> Manager
+              </button>
+              <button type="button" onclick="autofillDemoCreds('OWNER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
+                <i class="fa-solid fa-chart-pie text-amber-600 mr-1"></i> Owner
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Role 2: Billing Center (Cashier) -->
-        <div onclick="selectAppRole('CASHIER')" class="role-select-card" id="cardRole-CASHIER">
-          <div class="role-icon" style="background: #f0fdf4; color: #16a34a;">
-            <i class="fa-solid fa-calculator"></i>
+        <!-- TAB 2: REGISTER FORM -->
+        <div id="authRegisterForm" style="display: none;">
+          <div id="regErrorAlert" style="display: none; background: #fef2f2; border: 1px solid #f87171; color: #b91c1c; border-radius: 10px; padding: 0.75rem 1rem; font-size: 0.8rem; margin-bottom: 1rem;">
+            Registration failed. Please check inputs.
           </div>
-          <div>
-            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">Billing Center (Cashier)</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0.5rem;">Fast barcode checkout, cash tender change, thermal receipt & shift float.</p>
-            <span class="role-badge badge-cashier" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">
-              Terminal: Counter #1
-            </span>
-          </div>
-        </div>
 
-        <!-- Role 3: Store Manager -->
-        <div onclick="selectAppRole('MANAGER')" class="role-select-card" id="cardRole-MANAGER">
-          <div class="role-icon" style="background: #faf5ff; color: #9333ea;">
-            <i class="fa-solid fa-boxes-stacked"></i>
+          <div style="margin-bottom: 0.85rem;">
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Full Name</label>
+            <input id="inputRegName" type="text" placeholder="e.g. Ramesh Patel" class="search-input" style="width: 100%; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; font-size: 0.85rem;">
           </div>
-          <div>
-            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">Store Manager Portal</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0.5rem;">Supplier Stock-In, damaged adjustments, low stock alerts & shift monitoring.</p>
-            <span class="role-badge badge-manager" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">
-              Role: Store Manager
-            </span>
-          </div>
-        </div>
 
-        <!-- Role 4: Store Owner -->
-        <div onclick="selectAppRole('OWNER')" class="role-select-card" id="cardRole-OWNER">
-          <div class="role-icon" style="background: #fffbeb; color: #d97706;">
-            <i class="fa-solid fa-chart-pie"></i>
+          <div style="margin-bottom: 0.85rem;">
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Email Address</label>
+            <input id="inputRegEmail" type="email" placeholder="ramesh@example.com" class="search-input" style="width: 100%; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; font-size: 0.85rem;">
           </div>
-          <div>
-            <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">Store Owner (Admin)</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.25rem 0 0.5rem;">Executive revenue analytics, Excel/PDF financial exports, all ERP modules.</p>
-            <span class="role-badge badge-owner" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">
-              Role: Master Admin
-            </span>
+
+          <div style="margin-bottom: 0.85rem;">
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Username</label>
+            <input id="inputRegUser" type="text" placeholder="ramesh2026" class="search-input" style="width: 100%; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; font-size: 0.85rem;">
           </div>
-        </div>
 
-      </div>
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Password (min 8 chars with uppercase, number, symbol)</label>
+            <input id="inputRegPass" type="password" placeholder="Pass@12345" class="search-input" style="width: 100%; border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; font-size: 0.85rem;">
+          </div>
 
-      <!-- Custom Login Section -->
-      <div style="background: #f8fafc; border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem;">
-        <div style="font-weight: 700; font-size: 0.825rem; color: #334155; margin-bottom: 0.75rem;">
-          <i class="fa-solid fa-key text-blue-600 mr-1"></i> Custom Account Login
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.6rem; align-items: center;">
-          <input id="inputCustomUser" type="text" placeholder="Username (manager, customer)" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: 8px; background: #f8fafc; color: #0f172a; font-size: 0.8rem;">
-          <input id="inputCustomPass" type="password" placeholder="Password" style="padding: 0.5rem 0.75rem; border: 1px solid var(--card-border); border-radius: 8px; background: #f8fafc; color: #0f172a; font-size: 0.8rem;">
-          <button onclick="handleCustomLogin()" class="btn btn-primary" style="padding: 0.55rem 1rem;">
-            Sign In
+          <button onclick="handleRegisterSubmit()" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; font-size: 0.92rem; font-weight: 700;">
+            <i class="fa-solid fa-user-check mr-1"></i> Create Customer Account
           </button>
         </div>
+
       </div>
     </div>
   </div>
 
-  
   <!-- Live Camera Barcode Scanner Modal -->
   <div id="barcodeScannerModal" class="modal-overlay hidden">
     <div class="modal-box" style="max-width: 500px; width: 95%; text-align: center;">
@@ -1275,32 +1608,34 @@
     // ====================================================================
     const ROLE_CONFIGS = {
       CUSTOMER: {
-        name: 'Customer Storefront',
-        subtitle: 'Customer Storefront • Smarter Billing, Faster Retail',
+        name: 'Customer Self-Service Storefront',
+        subtitle: 'Browse 24 Products • Self-Checkout • Dynamic UPI QR',
         navBadge: 'Customer Store',
         badgeClass: 'badge-customer',
         badgeIcon: 'fa-basket-shopping',
-        username: 'Rohan Verma',
+        username: 'Rohan Sharma (Customer)',
         userRoleLabel: 'CUSTOMER',
-        account: { u: 'customer', p: 'Customer@123' },
+        expectedRole: 'ROLE_CUSTOMER',
+        demoCreds: { u: 'customer', p: 'Customer@2026' },
         allowedTabs: ['pos', 'orders'],
         defaultTab: 'pos',
         labelTabPos: 'Store Catalogue',
         iconTabPos: 'fa-basket-shopping',
-        cartTitle: '🛒 My Shopping Cart',
-        cartSubtitle: 'Items in your shopping basket',
-        checkoutBtnText: 'Proceed to Order & Pay',
+        cartTitle: 'My Shopping Cart',
+        cartSubtitle: 'Selected Items for Self-Checkout',
+        checkoutBtnText: 'Proceed to Pay (UPI/Cash)',
         showQuickSku: false
       },
       CASHIER: {
-        name: 'Billing Center (Cashier)',
-        subtitle: 'Fast POS Terminal • Counter #1',
-        navBadge: 'Billing Center',
+        name: 'Billing Center (Cashier Terminal #1)',
+        subtitle: 'High-Speed POS Register • Camera Barcode Scanner • Thermal Receipt',
+        navBadge: 'Cashier #1',
         badgeClass: 'badge-cashier',
         badgeIcon: 'fa-calculator',
         username: 'Sunita Rawat (Cashier)',
         userRoleLabel: 'CASHIER #1',
-        account: { u: 'manager', p: 'Manager@123' },
+        expectedRole: 'ROLE_CASHIER',
+        demoCreds: { u: 'cashier', p: 'Cashier@2026' },
         allowedTabs: ['pos', 'drawer'],
         defaultTab: 'pos',
         labelTabPos: 'POS Checkout Register',
@@ -1311,14 +1646,15 @@
         showQuickSku: true
       },
       MANAGER: {
-        name: 'Store Manager Portal',
-        subtitle: 'Inventory Replenishment & Shift Management',
+        name: 'Store Manager Control Portal',
+        subtitle: 'Inventory Replenishment • Stock Adjustments • Low-Stock Alerts',
         navBadge: 'Store Manager',
         badgeClass: 'badge-manager',
         badgeIcon: 'fa-boxes-stacked',
-        username: 'Rajesh Sharma',
+        username: 'Rajesh Sharma (Manager)',
         userRoleLabel: 'STORE MANAGER',
-        account: { u: 'manager', p: 'Manager@123' },
+        expectedRole: 'ROLE_STORE_MANAGER',
+        demoCreds: { u: 'manager', p: 'Manager@2026' },
         allowedTabs: ['inventory', 'drawer', 'pos'],
         defaultTab: 'inventory',
         labelTabPos: 'POS Register',
@@ -1329,14 +1665,15 @@
         showQuickSku: true
       },
       OWNER: {
-        name: 'Store Owner (Admin)',
-        subtitle: 'Executive Owner Dashboard • Enterprise ERP',
+        name: 'Store Owner Executive Dashboard',
+        subtitle: 'Enterprise Revenue Analytics • AI Stock Forecaster • Margin Insights',
         navBadge: 'Store Owner',
         badgeClass: 'badge-owner',
         badgeIcon: 'fa-chart-pie',
-        username: 'Rajesh Sharma',
-        userRoleLabel: 'MASTER ADMIN',
-        account: { u: 'manager', p: 'Manager@123' },
+        username: 'Vikramaditya Singhania (Owner)',
+        userRoleLabel: 'STORE OWNER',
+        expectedRole: 'ROLE_OWNER',
+        demoCreds: { u: 'owner', p: 'Owner@2026' },
         allowedTabs: ['reports', 'inventory', 'pos', 'drawer'],
         defaultTab: 'reports',
         labelTabPos: 'POS Register',
@@ -1351,12 +1688,301 @@
     let currentAppRole = localStorage.getItem('pos_current_role') || 'CUSTOMER';
     let token = localStorage.getItem('pos_token') || '';
     let user = JSON.parse(localStorage.getItem('pos_user') || 'null');
+    let selectedLoginRole = 'CUSTOMER';
     let masterProducts = [...defaultSeedProducts];
     let products = [...defaultSeedProducts];
     let cart = [];
     let checkoutMode = 'CASH';
     let lastSaleId = null;
     let selectedCat = null;
+
+    // View Navigation: Showcase Landing Page vs Internal Workspace
+    function showLandingPage() {
+      const showcase = document.getElementById('landingShowcase');
+      const workspace = document.getElementById('workspaceSection');
+      if (showcase) showcase.style.display = 'block';
+      if (workspace) workspace.style.display = 'none';
+
+      const loggedOut = document.getElementById('loggedOutActions');
+      const loggedIn = document.getElementById('loggedInActions');
+
+      if (token && user) {
+        if (loggedOut) loggedOut.style.display = 'none';
+        if (loggedIn) loggedIn.style.display = 'flex';
+      } else {
+        if (loggedOut) loggedOut.style.display = 'flex';
+        if (loggedIn) loggedIn.style.display = 'none';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showWorkspace(roleKey = null) {
+      if (roleKey) {
+        applyAppRole(roleKey, true);
+      }
+      const showcase = document.getElementById('landingShowcase');
+      const workspace = document.getElementById('workspaceSection');
+      if (showcase) showcase.style.display = 'none';
+      if (workspace) workspace.style.display = 'block';
+
+      const loggedOut = document.getElementById('loggedOutActions');
+      const loggedIn = document.getElementById('loggedInActions');
+      if (loggedOut) loggedOut.style.display = 'none';
+      if (loggedIn) loggedIn.style.display = 'flex';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function enterStoreAsCustomerGuest() {
+      applyAppRole('CUSTOMER', true);
+      showWorkspace('CUSTOMER');
+      toast('Entering Customer Storefront catalogue (Browse & Self-Checkout)', 'info');
+    }
+
+    function scrollToCatalogue() {
+      applyAppRole('CUSTOMER', true);
+      showWorkspace('CUSTOMER');
+      switchTab('pos');
+    }
+
+    // Modal Control & Tab Switching
+    function openAuthModal(tabMode = 'LOGIN', roleKey = null) {
+      openModal('authModal');
+      switchAuthTab(tabMode);
+      if (roleKey && ROLE_CONFIGS[roleKey]) {
+        selectAuthRole(roleKey);
+        autofillDemoCreds(roleKey);
+      } else {
+        selectAuthRole(currentAppRole || 'CUSTOMER');
+      }
+      // Clear alert banners
+      const errAlert = document.getElementById('loginErrorAlert');
+      if (errAlert) errAlert.style.display = 'none';
+      const regAlert = document.getElementById('regErrorAlert');
+      if (regAlert) regAlert.style.display = 'none';
+    }
+
+    function switchAuthTab(tab) {
+      const loginForm = document.getElementById('authLoginForm');
+      const regForm = document.getElementById('authRegisterForm');
+      const loginBtn = document.getElementById('authTabLoginBtn');
+      const regBtn = document.getElementById('authTabRegBtn');
+
+      if (tab === 'REGISTER') {
+        if (loginForm) loginForm.style.display = 'none';
+        if (regForm) regForm.style.display = 'block';
+        if (loginBtn) loginBtn.classList.remove('active');
+        if (regBtn) regBtn.classList.add('active');
+      } else {
+        if (loginForm) loginForm.style.display = 'block';
+        if (regForm) regForm.style.display = 'none';
+        if (loginBtn) loginBtn.classList.add('active');
+        if (regBtn) regBtn.classList.remove('active');
+      }
+    }
+
+    function selectAuthRole(roleKey) {
+      if (!ROLE_CONFIGS[roleKey]) roleKey = 'CUSTOMER';
+      selectedLoginRole = roleKey;
+
+      document.querySelectorAll('.role-auth-chip').forEach(c => c.classList.remove('active'));
+      const activeChip = document.getElementById(`authChip-${roleKey}`);
+      if (activeChip) activeChip.classList.add('active');
+
+      const submitBtn = document.getElementById('btnSubmitPortalLogin');
+      if (submitBtn) {
+        submitBtn.innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i> Sign In to ${ROLE_CONFIGS[roleKey].name}`;
+      }
+    }
+
+    function autofillDemoCreds(roleKey) {
+      selectAuthRole(roleKey);
+      const cfg = ROLE_CONFIGS[roleKey];
+      if (cfg && cfg.demoCreds) {
+        const uInput = document.getElementById('inputAuthUser');
+        const pInput = document.getElementById('inputAuthPass');
+        if (uInput) uInput.value = cfg.demoCreds.u;
+        if (pInput) pInput.value = cfg.demoCreds.p;
+      }
+      const errAlert = document.getElementById('loginErrorAlert');
+      if (errAlert) errAlert.style.display = 'none';
+    }
+
+    function togglePassVisibility() {
+      const p = document.getElementById('inputAuthPass');
+      const icon = document.getElementById('passEyeIcon');
+      if (!p) return;
+      if (p.type === 'password') {
+        p.type = 'text';
+        if (icon) icon.className = 'fa-solid fa-eye-slash';
+      } else {
+        p.type = 'password';
+        if (icon) icon.className = 'fa-solid fa-eye';
+      }
+    }
+
+    // Strict Role-Verified Portal Login
+    async function handlePortalLoginSubmit() {
+      const u = (document.getElementById('inputAuthUser')?.value || '').trim();
+      const p = (document.getElementById('inputAuthPass')?.value || '').trim();
+      const errAlert = document.getElementById('loginErrorAlert');
+      const errText = document.getElementById('loginErrorText');
+
+      if (!u || !p) {
+        if (errAlert && errText) {
+          errText.innerText = 'Please enter both username and password.';
+          errAlert.style.display = 'flex';
+        }
+        return;
+      }
+
+      const submitBtn = document.getElementById('btnSubmitPortalLogin');
+      const originalText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Verifying Credentials...';
+      }
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: u, password: p })
+        });
+        const d = await res.json();
+
+        if (!res.ok || !d.success || !d.data) {
+          const msg = d.message || 'Invalid username or password. Please verify credentials.';
+          if (errAlert && errText) {
+            errText.innerText = `❌ ${msg}`;
+            errAlert.style.display = 'flex';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }
+          return;
+        }
+
+        const authenticatedUser = d.data;
+        const userRoles = authenticatedUser.roles || [];
+        const targetRole = selectedLoginRole;
+
+        // Strict Role Authorization Check
+        let isAuthorized = false;
+        let roleErrorMsg = '';
+
+        if (targetRole === 'OWNER') {
+          if (userRoles.includes('ROLE_OWNER')) {
+            isAuthorized = true;
+          } else {
+            roleErrorMsg = `Access Denied: Account '${authenticatedUser.username}' does not have Store Owner authorization! Please use Store Owner credentials.`;
+          }
+        } else if (targetRole === 'MANAGER') {
+          if (userRoles.includes('ROLE_STORE_MANAGER') || userRoles.includes('ROLE_OWNER')) {
+            isAuthorized = true;
+          } else {
+            roleErrorMsg = `Access Denied: Account '${authenticatedUser.username}' does not have Store Manager permissions! Biller/Cashier accounts cannot access Manager portal. Please use Manager credentials.`;
+          }
+        } else if (targetRole === 'CASHIER') {
+          if (userRoles.includes('ROLE_CASHIER') || userRoles.includes('ROLE_STORE_MANAGER') || userRoles.includes('ROLE_OWNER')) {
+            isAuthorized = true;
+          } else {
+            roleErrorMsg = `Access Denied: Customer accounts are not permitted to operate Cashier Checkout Registers. Please sign in with Cashier credentials.`;
+          }
+        } else if (targetRole === 'CUSTOMER') {
+          // Anyone authenticated can view customer store
+          isAuthorized = true;
+        }
+
+        if (!isAuthorized) {
+          if (errAlert && errText) {
+            errText.innerText = `❌ ${roleErrorMsg}`;
+            errAlert.style.display = 'flex';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }
+          return;
+        }
+
+        // Login & Role verified successfully!
+        token = authenticatedUser.token;
+        user = authenticatedUser;
+        currentAppRole = targetRole;
+
+        localStorage.setItem('pos_token', token);
+        localStorage.setItem('pos_user', JSON.stringify(user));
+        localStorage.setItem('pos_current_role', currentAppRole);
+
+        closeModal('authModal');
+        showWorkspace(targetRole);
+        toast(`Authenticated as ${user.fullName} (${ROLE_CONFIGS[targetRole].navBadge})!`, 'success');
+
+      } catch (err) {
+        console.error('Login submit error:', err);
+        if (errAlert && errText) {
+          errText.innerText = 'Server connection failed. Ensure backend is running.';
+          errAlert.style.display = 'flex';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      }
+    }
+
+    // Customer Registration
+    async function handleRegisterSubmit() {
+      const name = (document.getElementById('inputRegName')?.value || '').trim();
+      const email = (document.getElementById('inputRegEmail')?.value || '').trim();
+      const u = (document.getElementById('inputRegUser')?.value || '').trim();
+      const p = (document.getElementById('inputRegPass')?.value || '').trim();
+      const errAlert = document.getElementById('regErrorAlert');
+
+      if (!name || !email || !u || !p) {
+        if (errAlert) {
+          errAlert.innerText = 'Please fill out all registration fields.';
+          errAlert.style.display = 'block';
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName: name, email: email, username: u, password: p })
+        });
+        const d = await res.json();
+
+        if (!res.ok || !d.success) {
+          const msg = d.message || 'Registration failed. Check if username or email is already taken.';
+          if (errAlert) {
+            errAlert.innerText = `❌ ${msg}`;
+            errAlert.style.display = 'block';
+          }
+          return;
+        }
+
+        toast(`Account created for ${name}! Logging you in...`, 'success');
+        // Auto-login newly registered customer
+        await quickLogin(u, p, true);
+        currentAppRole = 'CUSTOMER';
+        localStorage.setItem('pos_current_role', 'CUSTOMER');
+        closeModal('authModal');
+        showWorkspace('CUSTOMER');
+
+      } catch (err) {
+        console.error('Registration error:', err);
+        if (errAlert) {
+          errAlert.innerText = 'Failed to connect to backend registration endpoint.';
+          errAlert.style.display = 'block';
+        }
+      }
+    }
 
     async function applyAppRole(roleKey, silent = false) {
       if (!ROLE_CONFIGS[roleKey]) roleKey = 'CUSTOMER';
@@ -1378,17 +2004,9 @@
       if (footEl) footEl.innerText = cfg.name;
 
       // 2. Update User Pill
-      const nameEl = document.getElementById('navUsername');
-      const roleEl = document.getElementById('navRole');
-      if (nameEl) nameEl.innerText = cfg.username;
-      if (roleEl) roleEl.innerText = `| ${cfg.userRoleLabel}`;
+      syncUserPill();
 
-      // 3. Update Modal active cards
-      document.querySelectorAll('.role-select-card').forEach(c => c.classList.remove('active-card'));
-      const activeCard = document.getElementById(`cardRole-${roleKey}`);
-      if (activeCard) activeCard.classList.add('active-card');
-
-      // 4. Adapt Navigation Tabs visibility
+      // 3. Adapt Navigation Tabs visibility
       const allTabs = ['pos', 'orders', 'inventory', 'drawer', 'reports'];
       allTabs.forEach(t => {
         const btn = document.getElementById(`tabBtn-${t}`);
@@ -1401,7 +2019,7 @@
         }
       });
 
-      // 5. Update POS Register/Catalogue UI according to persona
+      // 4. Update POS Register/Catalogue UI according to persona
       const labelPos = document.getElementById('labelTabPos');
       if (labelPos) labelPos.innerText = cfg.labelTabPos;
 
@@ -1422,62 +2040,37 @@
         checkoutBtn.innerHTML = `<i class="fa-solid fa-credit-card mr-1"></i> ${cfg.checkoutBtnText}`;
       }
 
-      // 6. Authenticate with backend for this role
-      await quickLogin(cfg.account.u, cfg.account.p, true);
-
-      // 7. Switch to default tab for this role
+      // 5. Switch to default tab for this role
       switchTab(cfg.defaultTab);
 
       if (!silent) {
-        toast(`Switched to ${cfg.name}`, 'info');
-      }
-    }
-
-    async function selectAppRole(roleKey) {
-      closeModal('roleModal');
-      await applyAppRole(roleKey);
-    }
-
-    async function handleCustomLogin() {
-      const u = document.getElementById('inputCustomUser').value.trim();
-      const p = document.getElementById('inputCustomPass').value.trim();
-      if (!u || !p) {
-        toast('Please enter username and password', 'warning');
-        return;
-      }
-      const t = await quickLogin(u, p, false);
-      if (t) {
-        closeModal('roleModal');
-        // Auto-detect role from backend response
-        if (user && user.roles && user.roles.includes('ROLE_STORE_MANAGER')) {
-          applyAppRole('MANAGER');
-        } else {
-          applyAppRole('CUSTOMER');
-        }
-      } else {
-        toast('Invalid username or password', 'error');
+        toast(`Active Portal: ${cfg.name}`, 'info');
       }
     }
 
     function handleLogout() {
       localStorage.removeItem('pos_token');
       localStorage.removeItem('pos_user');
+      localStorage.removeItem('pos_current_role');
       token = '';
       user = null;
-      toast('Signed out successfully. Switched to public customer store.', 'info');
-      applyAppRole('CUSTOMER');
+      currentAppRole = 'CUSTOMER';
+      showLandingPage();
+      toast('Signed out successfully. Switched to NextStore showcase page.', 'info');
     }
 
     window.addEventListener('DOMContentLoaded', async () => {
       renderProducts(products);
       fetchCatalogue();
-      await applyAppRole(currentAppRole, true);
+      
+      // If user has a valid active session in localStorage, open their workspace
+      if (token && user) {
+        showWorkspace(currentAppRole);
+      } else {
+        // Otherwise present the Landing Show Page
+        showLandingPage();
+      }
     });
-
-    setTimeout(() => {
-      renderProducts(products);
-      fetchCatalogue();
-    }, 100);
 
     function switchTab(tabId) {
       try {
@@ -1522,25 +2115,39 @@
     async function authFetch(url, options = {}) {
       if (!token) {
         const cfg = ROLE_CONFIGS[currentAppRole] || ROLE_CONFIGS.CUSTOMER;
-        await quickLogin(cfg.account.u, cfg.account.p, true);
+        if (cfg && cfg.demoCreds) {
+          await quickLogin(cfg.demoCreds.u, cfg.demoCreds.p, true);
+        }
       }
       options.headers = options.headers || {};
-      options.headers['Authorization'] = 'Bearer ' + token;
+      if (token) {
+        options.headers['Authorization'] = 'Bearer ' + token;
+      }
 
       let res = await fetch(url, options);
       if (res.status === 401) {
         const cfg = ROLE_CONFIGS[currentAppRole] || ROLE_CONFIGS.CUSTOMER;
-        await quickLogin(cfg.account.u, cfg.account.p, true);
-        options.headers['Authorization'] = 'Bearer ' + token;
-        res = await fetch(url, options);
+        if (cfg && cfg.demoCreds) {
+          await quickLogin(cfg.demoCreds.u, cfg.demoCreds.p, true);
+          if (token) {
+            options.headers['Authorization'] = 'Bearer ' + token;
+            res = await fetch(url, options);
+          }
+        }
       }
       return res;
     }
 
     function syncUserPill() {
+      const nameEl = document.getElementById('navUsername');
+      const roleEl = document.getElementById('navRole');
       if (user) {
-        document.getElementById('navUsername').innerText = user.fullName;
-        document.getElementById('navRole').innerText = '| ' + (user.roles ? user.roles[0].replace('ROLE_', '') : 'USER');
+        if (nameEl) nameEl.innerText = user.fullName;
+        if (roleEl) roleEl.innerText = '| ' + (user.roles ? user.roles[0].replace('ROLE_', '') : 'USER');
+      } else {
+        const cfg = ROLE_CONFIGS[currentAppRole] || ROLE_CONFIGS.CUSTOMER;
+        if (nameEl) nameEl.innerText = cfg.username;
+        if (roleEl) roleEl.innerText = '| ' + cfg.userRoleLabel;
       }
     }
 

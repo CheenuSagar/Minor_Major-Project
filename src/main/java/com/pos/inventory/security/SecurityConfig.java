@@ -69,21 +69,21 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/public/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/actuator/**").permitAll()
 
-                // Store Manager specific endpoints
-                .requestMatchers("/api/users/**").hasRole("STORE_MANAGER")
-                .requestMatchers("/api/reports/**").hasRole("STORE_MANAGER")
-                .requestMatchers("/api/cash-drawer/**").hasRole("STORE_MANAGER")
-                .requestMatchers("/api/inventory/**").hasRole("STORE_MANAGER")
-                .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("STORE_MANAGER")
-                .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("STORE_MANAGER")
-                .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("STORE_MANAGER")
-                .requestMatchers(HttpMethod.PATCH, "/api/products/**").hasRole("STORE_MANAGER")
-                .requestMatchers("/api/categories/**").hasRole("STORE_MANAGER")
+                // Store Manager & Owner specific endpoints
+                .requestMatchers("/api/users/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers("/api/reports/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers("/api/cash-drawer/**").hasAnyRole("STORE_MANAGER", "CASHIER", "OWNER")
+                .requestMatchers("/api/inventory/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/products/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers(HttpMethod.PUT, "/api/products/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers(HttpMethod.PATCH, "/api/products/**").hasAnyRole("STORE_MANAGER", "OWNER")
+                .requestMatchers("/api/categories/**").hasAnyRole("STORE_MANAGER", "OWNER")
 
-                // Sales & Payments can be created by authenticated users (Store Manager, Cashier, Customer)
+                // Sales & Payments can be created by authenticated users (Store Manager, Cashier, Owner, Customer)
                 .requestMatchers("/api/sales/**").authenticated()
                 .requestMatchers("/api/payments/**").authenticated()
-                .requestMatchers(HttpMethod.GET, "/api/products/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
 
                 // Any other request must be authenticated
                 .anyRequest().authenticated()

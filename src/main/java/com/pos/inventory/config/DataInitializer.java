@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -38,6 +39,18 @@ public class DataInitializer implements CommandLineRunner {
                         .description("Store Manager with full administrative access")
                         .build()));
 
+        Role cashierRole = roleRepository.findByName(RoleType.ROLE_CASHIER)
+                .orElseGet(() -> roleRepository.save(Role.builder()
+                        .name(RoleType.ROLE_CASHIER)
+                        .description("Cashier with POS billing and shift audit access")
+                        .build()));
+
+        Role ownerRole = roleRepository.findByName(RoleType.ROLE_OWNER)
+                .orElseGet(() -> roleRepository.save(Role.builder()
+                        .name(RoleType.ROLE_OWNER)
+                        .description("Store Owner with executive revenue and AI forecast access")
+                        .build()));
+
         Role customerRole = roleRepository.findByName(RoleType.ROLE_CUSTOMER)
                 .orElseGet(() -> roleRepository.save(Role.builder()
                         .name(RoleType.ROLE_CUSTOMER)
@@ -45,32 +58,76 @@ public class DataInitializer implements CommandLineRunner {
                         .build()));
 
         // 2. Default Store Manager
-        if (!userRepository.existsByUsername("manager")) {
-            User manager = User.builder()
-                    .fullName("Default Store Manager")
-                    .username("manager")
-                    .email("manager@possystem.com")
-                    .password(passwordEncoder.encode("Manager@123"))
-                    .enabled(true)
-                    .roles(Set.of(managerRole))
-                    .build();
-            userRepository.save(manager);
-            log.info("Created default Store Manager account: username='manager', password='Manager@123'");
-        }
+        userRepository.findByUsername("manager").ifPresentOrElse(
+                u -> {
+                    u.setPassword(passwordEncoder.encode("Manager@2026"));
+                    u.setRoles(new HashSet<>(Set.of(managerRole)));
+                    userRepository.save(u);
+                },
+                () -> userRepository.save(User.builder()
+                        .fullName("Store Manager (Admin)")
+                        .username("manager")
+                        .email("manager@nextstore.com")
+                        .password(passwordEncoder.encode("Manager@2026"))
+                        .enabled(true)
+                        .roles(new HashSet<>(Set.of(managerRole)))
+                        .build())
+        );
+        log.info("Configured Store Manager account: username='manager', password='Manager@2026'");
 
-        // 3. Default Customer
-        if (!userRepository.existsByUsername("customer")) {
-            User customer = User.builder()
-                    .fullName("Rohan Sharma")
-                    .username("customer")
-                    .email("customer@possystem.com")
-                    .password(passwordEncoder.encode("Customer@123"))
-                    .enabled(true)
-                    .roles(Set.of(customerRole))
-                    .build();
-            userRepository.save(customer);
-            log.info("Created default Customer account: username='customer', password='Customer@123'");
-        }
+        // 3. Default Cashier
+        userRepository.findByUsername("cashier").ifPresentOrElse(
+                u -> {
+                    u.setPassword(passwordEncoder.encode("Cashier@2026"));
+                    u.setRoles(new HashSet<>(Set.of(cashierRole)));
+                    userRepository.save(u);
+                },
+                () -> userRepository.save(User.builder()
+                        .fullName("Main Counter Cashier")
+                        .username("cashier")
+                        .email("cashier@nextstore.com")
+                        .password(passwordEncoder.encode("Cashier@2026"))
+                        .enabled(true)
+                        .roles(new HashSet<>(Set.of(cashierRole)))
+                        .build())
+        );
+        log.info("Configured Cashier account: username='cashier', password='Cashier@2026'");
+
+        // 4. Default Store Owner
+        userRepository.findByUsername("owner").ifPresentOrElse(
+                u -> {
+                    u.setPassword(passwordEncoder.encode("Owner@2026"));
+                    u.setRoles(new HashSet<>(Set.of(ownerRole)));
+                    userRepository.save(u);
+                },
+                () -> userRepository.save(User.builder()
+                        .fullName("Store Owner (Executive)")
+                        .username("owner")
+                        .email("owner@nextstore.com")
+                        .password(passwordEncoder.encode("Owner@2026"))
+                        .enabled(true)
+                        .roles(new HashSet<>(Set.of(ownerRole)))
+                        .build())
+        );
+        log.info("Configured Store Owner account: username='owner', password='Owner@2026'");
+
+        // 5. Default Customer
+        userRepository.findByUsername("customer").ifPresentOrElse(
+                u -> {
+                    u.setPassword(passwordEncoder.encode("Customer@2026"));
+                    u.setRoles(new HashSet<>(Set.of(customerRole)));
+                    userRepository.save(u);
+                },
+                () -> userRepository.save(User.builder()
+                        .fullName("Rohan Sharma (Customer)")
+                        .username("customer")
+                        .email("customer@nextstore.com")
+                        .password(passwordEncoder.encode("Customer@2026"))
+                        .enabled(true)
+                        .roles(new HashSet<>(Set.of(customerRole)))
+                        .build())
+        );
+        log.info("Configured Customer account: username='customer', password='Customer@2026'");
 
         // 4. Sample Categories
         Category electronics = categoryRepository.findByNameIgnoreCase("Electronics")
