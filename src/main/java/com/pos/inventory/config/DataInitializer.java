@@ -278,6 +278,187 @@ public class DataInitializer implements CommandLineRunner {
                     .build());
         }
 
+        // Additional 12 Products (Electronics, Grocery, Stationery)
+        if (!productRepository.existsBySku("ELEC-SONY-CH520")) {
+            productRepository.save(Product.builder()
+                    .name("Sony WH-CH520 Wireless Bluetooth Headphones")
+                    .sku("ELEC-SONY-CH520")
+                    .description("Lightweight on-ear wireless headphones with 50-hour battery and DSEE sound")
+                    .price(new BigDecimal("4490.00"))
+                    .costPrice(new BigDecimal("3100.00"))
+                    .stockQuantity(18)
+                    .reorderThreshold(5)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(electronics)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("ELEC-APPL-20W")) {
+            productRepository.save(Product.builder()
+                    .name("Apple 20W USB-C Power Adapter")
+                    .sku("ELEC-APPL-20W")
+                    .description("Fast, efficient charging for iPhone, iPad, and AirPods at home or on the go")
+                    .price(new BigDecimal("1900.00"))
+                    .costPrice(new BigDecimal("1350.00"))
+                    .stockQuantity(24)
+                    .reorderThreshold(8)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(electronics)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("ELEC-PORT-USBC")) {
+            productRepository.save(Product.builder()
+                    .name("Portronics Konnect Pro Type-C Fast Cable 1.2M")
+                    .sku("ELEC-PORT-USBC")
+                    .description("Braided durable 3A fast charging and 480Mbps data sync cable")
+                    .price(new BigDecimal("249.00"))
+                    .costPrice(new BigDecimal("120.00"))
+                    .stockQuantity(55)
+                    .reorderThreshold(15)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(electronics)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("ELEC-HP-X1000")) {
+            productRepository.save(Product.builder()
+                    .name("HP X1000 Wired Optical Mouse")
+                    .sku("ELEC-HP-X1000")
+                    .description("Reliable 3-button USB optical mouse with responsive optical sensor")
+                    .price(new BigDecimal("399.00"))
+                    .costPrice(new BigDecimal("250.00"))
+                    .stockQuantity(32)
+                    .reorderThreshold(10)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(electronics)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("GROC-FORT-OIL1L")) {
+            productRepository.save(Product.builder()
+                    .name("Fortune Sunlite Refined Sunflower Oil 1L")
+                    .sku("GROC-FORT-OIL1L")
+                    .description("Light, healthy refined cooking oil enriched with Vitamins A and D")
+                    .price(new BigDecimal("145.00"))
+                    .costPrice(new BigDecimal("115.00"))
+                    .stockQuantity(40)
+                    .reorderThreshold(12)
+                    .taxRate(new BigDecimal("5.00"))
+                    .category(grocery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("GROC-KELL-CORN500")) {
+            productRepository.save(Product.builder()
+                    .name("Kellogg's Corn Flakes Original 500g Box")
+                    .sku("GROC-KELL-CORN500")
+                    .description("Crispy golden flakes made from sun-ripened corn with Iron and B Vitamins")
+                    .price(new BigDecimal("215.00"))
+                    .costPrice(new BigDecimal("165.00"))
+                    .stockQuantity(28)
+                    .reorderThreshold(8)
+                    .taxRate(new BigDecimal("5.00"))
+                    .category(grocery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("GROC-MAGG-MAS12")) {
+            productRepository.save(Product.builder()
+                    .name("Maggi 2-Minute Masala Noodles 12-Pack")
+                    .sku("GROC-MAGG-MAS12")
+                    .description("India's favourite instant masala noodles made with choicest roasted spices")
+                    .price(new BigDecimal("168.00"))
+                    .costPrice(new BigDecimal("132.00"))
+                    .stockQuantity(65)
+                    .reorderThreshold(20)
+                    .taxRate(new BigDecimal("12.00"))
+                    .category(grocery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("GROC-HALD-BHUJ400")) {
+            productRepository.save(Product.builder()
+                    .name("Haldiram's Nagpur Bhujia Sev 400g")
+                    .sku("GROC-HALD-BHUJ400")
+                    .description("Crispy spicy Indian snack made of moth bean flour and aromatic spices")
+                    .price(new BigDecimal("130.00"))
+                    .costPrice(new BigDecimal("98.00"))
+                    .stockQuantity(42)
+                    .reorderThreshold(15)
+                    .taxRate(new BigDecimal("12.00"))
+                    .category(grocery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("STAT-CAML-WB4")) {
+            productRepository.save(Product.builder()
+                    .name("Camlin Kokuyo Whiteboard Marker Pack (4 Colours)")
+                    .sku("STAT-CAML-WB4")
+                    .description("Bright ink easy dry-wipe whiteboard markers in Black, Blue, Red, Green")
+                    .price(new BigDecimal("140.00"))
+                    .costPrice(new BigDecimal("95.00"))
+                    .stockQuantity(35)
+                    .reorderThreshold(10)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(stationery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("STAT-KANG-STAP10")) {
+            productRepository.save(Product.builder()
+                    .name("Kangaro No. 10 Heavy Duty Stapler with Pins")
+                    .sku("STAT-KANG-STAP10")
+                    .description("All-metal body desktop stapler with built-in staple remover and 1000 pins")
+                    .price(new BigDecimal("95.00"))
+                    .costPrice(new BigDecimal("62.00"))
+                    .stockQuantity(48)
+                    .reorderThreshold(12)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(stationery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("STAT-FEVI-GLUE15")) {
+            productRepository.save(Product.builder()
+                    .name("Fevistik Super Glue Stick 15g (Pack of 3)")
+                    .sku("STAT-FEVI-GLUE15")
+                    .description("Non-toxic smooth paper bonding adhesive glue stick for office and school")
+                    .price(new BigDecimal("105.00"))
+                    .costPrice(new BigDecimal("70.00"))
+                    .stockQuantity(50)
+                    .reorderThreshold(15)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(stationery)
+                    .active(true)
+                    .build());
+        }
+
+        if (!productRepository.existsBySku("STAT-CELL-BFLW10")) {
+            productRepository.save(Product.builder()
+                    .name("Cello Butterflow Classic Blue Ball Pen (Pack of 10)")
+                    .sku("STAT-CELL-BFLW10")
+                    .description("Ultra-smooth low viscosity ink ball pen with comfortable soft rubber grip")
+                    .price(new BigDecimal("100.00"))
+                    .costPrice(new BigDecimal("68.00"))
+                    .stockQuantity(70)
+                    .reorderThreshold(20)
+                    .taxRate(new BigDecimal("18.00"))
+                    .category(stationery)
+                    .active(true)
+                    .build());
+        }
+
         log.info("Seed data verification complete.");
     }
 }

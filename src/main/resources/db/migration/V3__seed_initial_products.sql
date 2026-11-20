@@ -11,5 +11,17 @@ INSERT INTO products (id, name, sku, barcode, description, price, stock_quantity
 (9, 'Amul Pasteurised Butter 500g', 'GROC-AMUL-500G', '8901262010054', 'Delicious pure salted table butter made from fresh cream', 275.00, 30, 8, 2, TRUE),
 (10, 'Parker Jotter Stainless Steel Ball Pen', 'STAT-PARK-JOTT', '8901198000013', 'Iconic Stainless Steel Ballpoint Pen with Chrome Trim', 320.00, 15, 5, 3, TRUE),
 (11, 'Casio FX-991CW Scientific Calculator', 'STAT-CASI-991CW', '4549526615598', 'ClassWiz Non-Programmable Scientific Calculator with 540 Functions', 1295.00, 12, 4, 3, TRUE),
-(12, 'Post-it 3x3 Self-Adhesive Notes Pack', 'STAT-POST-3X3N', '051131650021', 'Yellow Repositionable Sticky Notes Pad, 100 Sheets per Pad', 145.00, 22, 5, 3, TRUE)
+(12, 'Post-it 3x3 Self-Adhesive Notes Pack', 'STAT-POST-3X3N', '051131650021', 'Yellow Repositionable Sticky Notes Pad, 100 Sheets per Pad', 145.00, 22, 5, 3, TRUE),
+(13, 'Sony WH-CH520 Wireless Bluetooth Headphones', 'ELEC-SONY-CH520', '4548736140882', 'Lightweight on-ear wireless headphones with 50-hour battery and DSEE sound', 4490.00, 18, 5, 1, TRUE),
+(14, 'Apple 20W USB-C Power Adapter', 'ELEC-APPL-20W', '194252157053', 'Fast, efficient charging for iPhone, iPad, and AirPods at home or on the go', 1900.00, 24, 8, 1, TRUE),
+(15, 'Portronics Konnect Pro Type-C Fast Cable 1.2M', 'ELEC-PORT-USBC', '8906120130985', 'Braided durable 3A fast charging and 480Mbps data sync cable', 249.00, 55, 15, 1, TRUE),
+(16, 'HP X1000 Wired Optical Mouse', 'ELEC-HP-X1000', '887111005888', 'Reliable 3-button USB optical mouse with responsive optical sensor', 399.00, 32, 10, 1, TRUE),
+(17, 'Fortune Sunlite Refined Sunflower Oil 1L', 'GROC-FORT-OIL1L', '8906007280321', 'Light, healthy refined cooking oil enriched with Vitamins A and D', 145.00, 40, 12, 2, TRUE),
+(18, 'Kellogg\'s Corn Flakes Original 500g Box', 'GROC-KELL-CORN500', '8901499008204', 'Crispy golden flakes made from sun-ripened corn with Iron and B Vitamins', 215.00, 28, 8, 2, TRUE),
+(19, 'Maggi 2-Minute Masala Noodles 12-Pack', 'GROC-MAGG-MAS12', '8901058863246', 'India favourite instant masala noodles made with choicest roasted spices', 168.00, 65, 20, 2, TRUE),
+(20, 'Haldiram\'s Nagpur Bhujia Sev 400g', 'GROC-HALD-BHUJ400', '8904004400262', 'Crispy spicy Indian snack made of moth bean flour and aromatic spices', 130.00, 42, 15, 2, TRUE),
+(21, 'Camlin Kokuyo Whiteboard Marker Pack (4 Colours)', 'STAT-CAML-WB4', '8901425026111', 'Bright ink easy dry-wipe whiteboard markers in Black, Blue, Red, Green', 140.00, 35, 10, 3, TRUE),
+(22, 'Kangaro No. 10 Heavy Duty Stapler with Pins', 'STAT-KANG-STAP10', '8901057002011', 'All-metal body desktop stapler with built-in staple remover and 1000 pins', 95.00, 48, 12, 3, TRUE),
+(23, 'Fevistik Super Glue Stick 15g (Pack of 3)', 'STAT-FEVI-GLUE15', '8901860010418', 'Non-toxic smooth paper bonding adhesive glue stick for office and school', 105.00, 50, 15, 3, TRUE),
+(24, 'Cello Butterflow Classic Blue Ball Pen (Pack of 10)', 'STAT-CELL-BFLW10', '8901198000457', 'Ultra-smooth low viscosity ink ball pen with comfortable soft rubber grip', 100.00, 70, 20, 3, TRUE)
 ON DUPLICATE KEY UPDATE name=VALUES(name);
