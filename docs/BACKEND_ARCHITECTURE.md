@@ -17,3 +17,6 @@ Configured `SecurityConfig` to permit `/`, `/index.html`, `/static/**`, and favi
 
 ## JWT Resilience
 JWT filter gracefully returns 401 without stack traces on expired tokens.
+
+## Actuator Endpoints
+Exposes `/actuator/health`, `/actuator/info`, and `/actuator/metrics` for monitoring.
