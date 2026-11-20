@@ -14,3 +14,6 @@ Standard 80mm thermal receipt layout with monospace font alignment.
 
 ## PDF Export
 Integrated with OpenPDF backend service for downloadable tax invoice PDF.
+
+## Phone Number Capture
+Optional phone number prompt during checkout for digital paperless delivery.
