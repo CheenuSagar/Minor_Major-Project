@@ -650,9 +650,6 @@
     <div class="nav-actions">
       <!-- Logged Out Actions -->
       <div id="loggedOutActions" style="display: flex; align-items: center; gap: 0.6rem;">
-        <button onclick="scrollToCatalogue()" class="btn btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.9rem;">
-          <i class="fa-solid fa-store mr-1"></i> Live Storefront
-        </button>
         <button onclick="openAuthModal('LOGIN')" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.5rem 1rem; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);">
           <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In / Portal Login
         </button>
@@ -725,10 +722,7 @@
         <button onclick="openAuthModal('REGISTER')" class="btn btn-secondary" style="font-size: 1rem; padding: 0.85rem 1.6rem; border-color: #cbd5e1;">
           <i class="fa-solid fa-user-plus mr-2"></i> Register Customer Account
         </button>
-        <button onclick="enterStoreAsCustomerGuest()" class="btn btn-secondary" style="font-size: 1rem; padding: 0.85rem 1.6rem; background: #ffffff;">
-          <i class="fa-solid fa-store mr-2"></i> Browse 24 Products Live
-        </button>
-      </div>
+        </div>
     </div>
 
     <!-- 4 Role Portals Showcase Section -->
@@ -749,10 +743,7 @@
             <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
               Self-service product catalogue browsing, interactive multi-category search, responsive cart, Dynamic UPI QR payment, and WhatsApp receipt download.
             </p>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
-              <strong>ID:</strong> <code style="color: #2563eb;">customer</code> | <strong>Pass:</strong> <code style="color: #2563eb;">Customer@2026</code>
             </div>
-          </div>
           <button onclick="openAuthModal('LOGIN', 'CUSTOMER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #2563eb; border-color: #bfdbfe; background: #eff6ff;">
             <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Customer
           </button>
@@ -768,10 +759,7 @@
             <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
               Accelerated high-speed checkout, HTML5 webcam barcode scanner with synthetic audio beep, cash tender calculator, thermal print, and shift float audits.
             </p>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
-              <strong>ID:</strong> <code style="color: #16a34a;">cashier</code> | <strong>Pass:</strong> <code style="color: #16a34a;">Cashier@2026</code>
             </div>
-          </div>
           <button onclick="openAuthModal('LOGIN', 'CASHIER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #16a34a; border-color: #bbf7d0; background: #f0fdf4;">
             <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Cashier
           </button>
@@ -787,10 +775,7 @@
             <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
               Complete inventory control, product catalog management, supplier stock-inward replenishment, damaged item write-offs, and cashier shift monitoring.
             </p>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
-              <strong>ID:</strong> <code style="color: #9333ea;">manager</code> | <strong>Pass:</strong> <code style="color: #9333ea;">Manager@2026</code>
             </div>
-          </div>
           <button onclick="openAuthModal('LOGIN', 'MANAGER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #9333ea; border-color: #e9d5ff; background: #faf5ff;">
             <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Store Manager
           </button>
@@ -806,10 +791,7 @@
             <p style="font-size: 0.82rem; color: #64748b; line-height: 1.5; margin-bottom: 1rem;">
               Executive financial KPIs, gross profit margins, AI inventory demand forecaster, dead-stock detection, peak retail rush hours, and PDF/Excel executive reports.
             </p>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.72rem; color: #334155; margin-bottom: 1.25rem;">
-              <strong>ID:</strong> <code style="color: #d97706;">owner</code> | <strong>Pass:</strong> <code style="color: #d97706;">Owner@2026</code>
             </div>
-          </div>
           <button onclick="openAuthModal('LOGIN', 'OWNER')" class="btn btn-secondary" style="width: 100%; justify-content: center; font-weight: 700; color: #d97706; border-color: #fde68a; background: #fffbeb;">
             <i class="fa-solid fa-right-to-bracket mr-1"></i> Sign In as Store Owner
           </button>
@@ -1258,7 +1240,7 @@
             <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">Username or Email</label>
             <div class="search-input-wrapper" style="border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; background: #ffffff;">
               <i class="fa-solid fa-user" style="color: #94a3b8;"></i>
-              <input id="inputAuthUser" type="text" placeholder="Enter username" class="search-input" style="font-size: 0.85rem;" autocomplete="username">
+              <input id="inputAuthUser" type="text" placeholder="Enter username" class="search-input" style="font-size: 0.85rem;" autocomplete="off" value="">
             </div>
           </div>
 
@@ -1271,7 +1253,7 @@
             </div>
             <div class="search-input-wrapper" style="border: 1px solid var(--card-border); border-radius: 10px; padding: 0.6rem 0.85rem; background: #ffffff;">
               <i class="fa-solid fa-lock" style="color: #94a3b8;"></i>
-              <input id="inputAuthPass" type="password" placeholder="Enter password" class="search-input" style="font-size: 0.85rem;" autocomplete="current-password">
+              <input id="inputAuthPass" type="password" placeholder="Enter password" class="search-input" style="font-size: 0.85rem;" autocomplete="new-password" value="">
             </div>
           </div>
 
@@ -1279,28 +1261,7 @@
             <i class="fa-solid fa-shield-halved mr-1"></i> Authenticate & Enter Portal
           </button>
 
-          <!-- 1-Click Demo Credentials Quick-Fill -->
-          <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--card-border);">
-            <div style="font-size: 0.72rem; font-weight: 700; color: #64748b; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
-              1-Click Demo Fill Credentials:
-            </div>
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
-              <button type="button" onclick="autofillDemoCreds('CUSTOMER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
-                <i class="fa-solid fa-basket-shopping text-blue-600 mr-1"></i> Customer
-              </button>
-              <button type="button" onclick="autofillDemoCreds('CASHIER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
-                <i class="fa-solid fa-calculator text-emerald-600 mr-1"></i> Cashier
-              </button>
-              <button type="button" onclick="autofillDemoCreds('MANAGER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
-                <i class="fa-solid fa-boxes-stacked text-purple-600 mr-1"></i> Manager
-              </button>
-              <button type="button" onclick="autofillDemoCreds('OWNER')" class="btn btn-secondary" style="font-size: 0.72rem; padding: 0.3rem 0.6rem;">
-                <i class="fa-solid fa-chart-pie text-amber-600 mr-1"></i> Owner
-              </button>
-            </div>
           </div>
-        </div>
-
         <!-- TAB 2: REGISTER FORM -->
         <div id="authRegisterForm" style="display: none;">
           <div id="regErrorAlert" style="display: none; background: #fef2f2; border: 1px solid #f87171; color: #b91c1c; border-radius: 10px; padding: 0.75rem 1rem; font-size: 0.8rem; margin-bottom: 1rem;">
@@ -1609,7 +1570,7 @@
     const ROLE_CONFIGS = {
       CUSTOMER: {
         name: 'Customer Self-Service Storefront',
-        subtitle: 'Browse 24 Products • Self-Checkout • Dynamic UPI QR',
+        subtitle: 'Self-Checkout • Contactless Dynamic UPI QR',
         navBadge: 'Customer Store',
         badgeClass: 'badge-customer',
         badgeIcon: 'fa-basket-shopping',
@@ -1751,10 +1712,16 @@
       switchAuthTab(tabMode);
       if (roleKey && ROLE_CONFIGS[roleKey]) {
         selectAuthRole(roleKey);
-        autofillDemoCreds(roleKey);
       } else {
         selectAuthRole(currentAppRole || 'CUSTOMER');
       }
+
+      // Always clear username and password inputs (NO autofill)
+      const uInput = document.getElementById('inputAuthUser');
+      const pInput = document.getElementById('inputAuthPass');
+      if (uInput) uInput.value = '';
+      if (pInput) pInput.value = '';
+
       // Clear alert banners
       const errAlert = document.getElementById('loginErrorAlert');
       if (errAlert) errAlert.style.display = 'none';
@@ -1795,15 +1762,7 @@
       }
     }
 
-    function autofillDemoCreds(roleKey) {
-      selectAuthRole(roleKey);
-      const cfg = ROLE_CONFIGS[roleKey];
-      if (cfg && cfg.demoCreds) {
-        const uInput = document.getElementById('inputAuthUser');
-        const pInput = document.getElementById('inputAuthPass');
-        if (uInput) uInput.value = cfg.demoCreds.u;
-        if (pInput) pInput.value = cfg.demoCreds.p;
-      }
+    // Autofill removed for security
       const errAlert = document.getElementById('loginErrorAlert');
       if (errAlert) errAlert.style.display = 'none';
     }
