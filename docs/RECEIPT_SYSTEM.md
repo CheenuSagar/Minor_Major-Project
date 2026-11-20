@@ -11,3 +11,6 @@ Standard 80mm thermal receipt layout with monospace font alignment.
 
 ## Thermal Printing
 `window.print()` using CSS `@media print` rules hiding UI chrome and headers.
+
+## PDF Export
+Integrated with OpenPDF backend service for downloadable tax invoice PDF.
