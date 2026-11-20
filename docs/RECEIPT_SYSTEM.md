@@ -20,3 +20,6 @@ Optional phone number prompt during checkout for digital paperless delivery.
 
 ## Verification QR
 Embedded QR code printed on receipt allows customer to view digital copy online.
+
+## Policy & Contact
+Footer specifies return window (7 days), store helpline, and GSTIN number.
