@@ -10,6 +10,6 @@ if "%DB_USERNAME%"=="" set DB_USERNAME=root
 if "%DB_PASSWORD%"=="" set DB_PASSWORD=root
 
 set SPRING_PROFILES_ACTIVE=mysql
-java -jar "target\nextstore-backend.jar" --spring.profiles.active=mysql
+java -jar "target\nextstore-backend.jar" --spring.profiles.active=mysql --spring.datasource.password="%DB_PASSWORD%"
 
 pause
