@@ -4,3 +4,6 @@ Calculates inventory consumption velocity, runout estimation, and reorder alerts
 
 ## Reorder Recommendations
 Flags items whose current stock is projected to deplete before supplier lead time.
+
+## Runout Estimates
+Dynamic banner showing 'Runs out in X days' based on average daily units sold.
