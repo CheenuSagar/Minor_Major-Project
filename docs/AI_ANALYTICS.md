@@ -7,3 +7,8 @@ Flags items whose current stock is projected to deplete before supplier lead tim
 
 ## Runout Estimates
 Dynamic banner showing 'Runs out in X days' based on average daily units sold.
+
+## Velocity Tiers
+- Fast-Moving: Sales velocity > 5 units/day
+- Medium-Moving: 1 - 5 units/day
+- Slow-Moving: < 1 unit/day
