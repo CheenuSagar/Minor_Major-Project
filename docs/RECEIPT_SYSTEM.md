@@ -17,3 +17,6 @@ Integrated with OpenPDF backend service for downloadable tax invoice PDF.
 
 ## Phone Number Capture
 Optional phone number prompt during checkout for digital paperless delivery.
+
+## Verification QR
+Embedded QR code printed on receipt allows customer to view digital copy online.
