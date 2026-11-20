@@ -18,3 +18,6 @@ Visual radial indicator illustrating ratio of healthy stock vs low stock.
 
 ## Margin Metrics
 Computes gross profit margins `(Price - Cost) / Price` for overall store inventory.
+
+## Dead Stock Alerts
+Flags items with zero sales movements in the last 30 days to prevent capital lockup.
