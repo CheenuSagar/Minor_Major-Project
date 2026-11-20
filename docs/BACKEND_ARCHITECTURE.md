@@ -20,3 +20,6 @@ JWT filter gracefully returns 401 without stack traces on expired tokens.
 
 ## Actuator Endpoints
 Exposes `/actuator/health`, `/actuator/info`, and `/actuator/metrics` for monitoring.
+
+## Logback Logging
+Pattern format: `%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%t] %c{1.} : %m%n`.
