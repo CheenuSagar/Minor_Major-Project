@@ -23,3 +23,6 @@ Embedded QR code printed on receipt allows customer to view digital copy online.
 
 ## Policy & Contact
 Footer specifies return window (7 days), store helpline, and GSTIN number.
+
+## Loyalty Points
+Calculates and displays points earned on current transaction (1 point / ₹100).
