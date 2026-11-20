@@ -24,3 +24,6 @@ Flags items with zero sales movements in the last 30 days to prevent capital loc
 
 ## Purchase Orders
 Generates pre-filled vendor purchase order with recommended reorder quantity.
+
+## CSV Export
+Allows exporting reorder and stockout projections to Excel/CSV for suppliers.
