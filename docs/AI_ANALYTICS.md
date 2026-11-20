@@ -27,3 +27,6 @@ Generates pre-filled vendor purchase order with recommended reorder quantity.
 
 ## CSV Export
 Allows exporting reorder and stockout projections to Excel/CSV for suppliers.
+
+## Seasonal Demand
+Configurable seasonal multiplier for festival and holiday retail rushes.
