@@ -37,7 +37,7 @@ public class InventoryController {
     private final UserService userService;
 
     @PostMapping("/stock-in")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @Operation(summary = "Replenish stock (Stock-In)", description = "Adds inventory to an existing product SKU and creates an audit movement record")
     public ResponseEntity<ApiResponse<ProductResponse>> stockIn(@Valid @RequestBody StockInRequest request) {
         User currentUser = userService.getCurrentAuthenticatedUser();
@@ -46,7 +46,7 @@ public class InventoryController {
     }
 
     @PostMapping("/adjust")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @Operation(summary = "Adjust inventory stock", description = "Directly sets stock quantity (>=0) with mandatory reason for shrinkage/damage")
     public ResponseEntity<ApiResponse<ProductResponse>> adjustStock(@Valid @RequestBody StockAdjustmentRequest request) {
         User currentUser = userService.getCurrentAuthenticatedUser();
@@ -55,7 +55,7 @@ public class InventoryController {
     }
 
     @GetMapping("/low-stock")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @Operation(summary = "Low stock alert", description = "Retrieves products where quantity <= reorder threshold")
     public ResponseEntity<ApiResponse<List<LowStockProductDto>>> getLowStockProducts() {
         List<LowStockProductDto> lowStock = inventoryService.getLowStockProducts();
@@ -63,7 +63,7 @@ public class InventoryController {
     }
 
     @GetMapping("/movements/{productId}")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @Operation(summary = "Stock movement audit trail for a product", description = "Shows all stock additions, adjustments, and sale deductions")
     public ResponseEntity<ApiResponse<PageResponse<StockMovement>>> getStockMovements(
             @PathVariable Long productId,

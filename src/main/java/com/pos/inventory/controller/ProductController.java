@@ -83,9 +83,9 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Create a new product", description = "Allowed only for STORE_MANAGER")
+    @Operation(summary = "Create a new product", description = "Allowed for STORE_MANAGER and OWNER")
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse product = productService.createProduct(request);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -93,9 +93,9 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Update an existing product", description = "Allowed only for STORE_MANAGER")
+    @Operation(summary = "Update an existing product", description = "Allowed for STORE_MANAGER and OWNER")
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(
             @PathVariable Long id,
             @Valid @RequestBody ProductRequest request) {
@@ -104,7 +104,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{id}")
-    @PreAuthorize("hasRole('STORE_MANAGER')")
+    @PreAuthorize("hasAnyRole('STORE_MANAGER', 'OWNER')")
     @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Soft deactivate a product", description = "Sets product active flag to false (soft delete)")
     public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long id) {

@@ -66,7 +66,7 @@ public class SecurityConfig {
                 // Public web pages & endpoints
                 .requestMatchers("/", "/index.html", "/favicon.ico", "/error", "/static/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/public/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/public/**", "/api/categories/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/actuator/**").permitAll()
 
                 // Store Manager & Owner specific endpoints

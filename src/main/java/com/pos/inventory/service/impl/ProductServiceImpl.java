@@ -98,6 +98,23 @@ public class ProductServiceImpl implements ProductService {
         if (request.getTaxRate() != null) {
             product.setTaxRate(request.getTaxRate());
         }
+        if (request.getStockQuantity() != null) {
+            int prevStock = product.getStockQuantity();
+            int newStock = request.getStockQuantity();
+            if (newStock != prevStock) {
+                product.setStockQuantity(newStock);
+                StockMovement movement = StockMovement.builder()
+                        .product(product)
+                        .movementType(StockMovementType.ADJUSTMENT)
+                        .quantity(newStock - prevStock)
+                        .previousStock(prevStock)
+                        .newStock(newStock)
+                        .reason("Product stock updated via product update")
+                        .referenceId("UPDATE-" + product.getSku())
+                        .build();
+                stockMovementRepository.save(movement);
+            }
+        }
         product.setCategory(category);
         if (request.getActive() != null) {
             product.setActive(request.getActive());

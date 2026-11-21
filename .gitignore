@@ -36,3 +36,10 @@ build/
 .DS_Store
 Thumbs.db
 create_commits.js
+
+### Project Reports ###
+*.pdf
+*.docx
+~$*
+generate_report.py
+generate_docx.py
